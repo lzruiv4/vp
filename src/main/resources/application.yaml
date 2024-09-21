@@ -1,7 +1,6 @@
-
 logging:
   level:
-    org.atmosphere : warn
+    org.atmosphere: warn
 
 spring:
   datasource:
