@@ -24,9 +24,9 @@ public class RegionalPage extends AbstractPage {
     private final BindingManager bindingManager;
     private final RegionalLookUpPmo regionalLookUpPmo;
 
-    private RegionalService regionalService;
+    private final RegionalService regionalService;
 
-    private List<RegionalFromCSV> regionals;
+    private final List<RegionalFromCSV> regionals;
 
     public RegionalPage() {
         this.bindingManager = new DefaultBindingManager(ValidationService.NOP_VALIDATION_SERVICE,

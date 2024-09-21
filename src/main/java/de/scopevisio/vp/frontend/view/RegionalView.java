@@ -6,10 +6,13 @@ import com.vaadin.flow.router.Route;
 import de.scopevisio.vp.frontend.ui.VPLayout;
 import org.linkki.framework.ui.component.Headline;
 
+import java.io.Serial;
+
 @PageTitle("RegionsRecord")
 @Route(value = "re", layout = VPLayout.class)
 public class RegionalView extends VerticalLayout {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     public RegionalView() {
