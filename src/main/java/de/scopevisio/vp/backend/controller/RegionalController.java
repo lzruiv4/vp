@@ -1,7 +1,7 @@
-package de.scopevisio.vp.controller;
+package de.scopevisio.vp.backend.controller;
 
-import de.scopevisio.vp.data.model.RegionalFromCSV;
-import de.scopevisio.vp.service.RegionalService;
+import de.scopevisio.vp.backend.data.model.RegionalFromCSV;
+import de.scopevisio.vp.backend.service.RegionalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

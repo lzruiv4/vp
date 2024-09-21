@@ -1,8 +1,8 @@
-package de.scopevisio.vp.service;
+package de.scopevisio.vp.backend.service;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import de.scopevisio.vp.data.model.RegionalFromCSV;
+import de.scopevisio.vp.backend.data.model.RegionalFromCSV;
 import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
@@ -25,7 +25,7 @@ public class RegionalService {
             }
 
         } catch (IOException | CsvException e) {
-            e.printStackTrace(); // Maybe use logger
+            e.printStackTrace();
         }
         return regionalFromCSVS;
     }

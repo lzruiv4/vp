@@ -1,4 +1,4 @@
-package de.scopevisio.vp.ui;
+package de.scopevisio.vp.frontend.ui;
 
 import java.time.Year;
 

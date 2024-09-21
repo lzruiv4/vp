@@ -1,4 +1,4 @@
-package de.scopevisio.vp.view;
+package de.scopevisio.vp.frontend.view;
 
 import org.linkki.core.binding.manager.BindingManager;
 import org.linkki.core.binding.manager.DefaultBindingManager;

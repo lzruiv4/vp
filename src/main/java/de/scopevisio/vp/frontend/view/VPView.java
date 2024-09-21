@@ -1,9 +1,9 @@
-package de.scopevisio.vp.view;
+package de.scopevisio.vp.frontend.view;
 
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import de.scopevisio.vp.ui.VPLayout;
+import de.scopevisio.vp.frontend.ui.VPLayout;
 import org.linkki.framework.ui.component.Headline;
 
 @PageTitle("de/scopevisio/vp")

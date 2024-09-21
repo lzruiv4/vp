@@ -1,4 +1,4 @@
-package de.scopevisio.vp.view;
+package de.scopevisio.vp.frontend.view;
 
 import org.apache.commons.lang3.StringUtils;
 import org.linkki.core.defaults.ui.aspects.types.EnabledType;
