@@ -92,6 +92,17 @@ venv/
 # BlueJ files
 *.ctxt
 
+# Vaadin
+**/node_modules
+**/frontend/generated
+**/dev-bundle
+**/.npmrc
+**/pnpmfile.js
+**/webpack.generated.js
+**/vite.generated.ts
+**/package-lock.json
+**/package.json
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
