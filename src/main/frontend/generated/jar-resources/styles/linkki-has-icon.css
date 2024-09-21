@@ -1,0 +1,20 @@
+/* DEPRECATED, DO NOT USE */
+.linkki-has-icon vaadin-icon {
+    height: var(--lumo-font-size-m);
+    min-height: var(--lumo-font-size-m);
+    min-width: var(--lumo-font-size-m);
+    max-height: var(--lumo-font-size-m);
+    max-width: var(--lumo-font-size-m);
+}
+
+/* DEPRECATED, DO NOT USE */
+a.linkki-has-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+linkki-text .linkki-text-icon {
+    height: var(--lumo-font-size-m);
+    width: var(--lumo-font-size-m);
+}

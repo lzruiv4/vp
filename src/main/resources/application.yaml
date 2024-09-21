@@ -1,0 +1,27 @@
+
+logging:
+  level:
+    org.atmosphere : warn
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:vp
+    driver-class-name: org.h2.Driver
+    username: 123
+    password: 123
+
+  jpa:
+    show-sql: true
+    open-in-view: false
+
+  h2:
+    console:
+      enabled: true
+      path: /db
+
+  mustache:
+    check-template-location : false
+
+# Launch the default browser when starting the application in development mode
+vaadin:
+  launch-browser : true

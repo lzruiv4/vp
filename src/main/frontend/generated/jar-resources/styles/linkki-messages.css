@@ -1,0 +1,15 @@
+.linkki-message-table {
+    border: none;
+}
+.linkki-message-row span {
+    white-space: normal;
+}
+.linkki-message-error vaadin-icon {
+    color: var(--linkki-error-color, var(--lumo-error-color));
+}
+.linkki-message-warning vaadin-icon {
+    color: var(--linkki-warning-color, var(--lumo-warning-color));
+}
+.linkki-message-info vaadin-icon {
+    color: var(--linkki-info-color, var(--lumo-info-color));
+}

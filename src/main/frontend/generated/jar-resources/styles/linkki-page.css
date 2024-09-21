@@ -1,0 +1,11 @@
+.linkki-page,
+.linkki-page vaadin-horizontal-layout[theme~="spacing"] {
+    gap: var(--lumo-space-xl);
+}
+
+.linkki-page[theme~="card-sections"],
+.linkki-page[theme~="card-sections"] vaadin-horizontal-layout[theme~="spacing"],
+[theme~="card-sections"] .linkki-page,
+[theme~="card-sections"] .linkki-page vaadin-horizontal-layout[theme~="spacing"] {
+    gap: var(--lumo-space-m);
+}
