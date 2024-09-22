@@ -6,6 +6,7 @@ import de.scopevisio.vp.backend.data.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Component
@@ -23,6 +24,8 @@ public class ClientStore {
 
     public Client getClient(final Long clientId) {
         Optional<ClientEntity> clientEntityOptional = clientRepository.findById(clientId);
-        return clientEntityOptional.map(ClientEntity::entityToModel).orElse(null);
+        return clientEntityOptional
+                .map(ClientEntity::entityToModel)
+                .orElseThrow(() -> new NoSuchElementException("Client not found"));
     }
 }

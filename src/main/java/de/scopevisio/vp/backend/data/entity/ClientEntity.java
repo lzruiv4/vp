@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Entity
 @Table(name = "clients")
 @AllArgsConstructor
@@ -25,7 +27,7 @@ public class ClientEntity {
     private String lastname;
 
     public Client entityToModel(){
-        return new Client(clientId, firstname, lastname);
+        return new Client(clientId, firstname, lastname, new ArrayList<>());
     }
 
 }
