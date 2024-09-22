@@ -15,11 +15,9 @@ public class ClientStore {
 
     private final ClientRepository clientRepository;
 
-    public Client createClient(final String firstname, final String lastname){
-        ClientEntity clientEntityToBeSave = new ClientEntity();
-        clientEntityToBeSave.setFirstname(firstname);
-        clientEntityToBeSave.setLastname(lastname);
-        return clientRepository.save(clientEntityToBeSave).entityToModel();
+
+    public Client createClient(final Client client){
+        return clientRepository.save(client.modelToEntity()).entityToModel();
     }
 
     public Client getClient(final Long clientId) {
@@ -27,5 +25,15 @@ public class ClientStore {
         return clientEntityOptional
                 .map(ClientEntity::entityToModel)
                 .orElseThrow(() -> new NoSuchElementException("Client not found"));
+    }
+
+    public Client updateClient(final Client newClient) {
+        Optional<ClientEntity> clientEntityOptional = clientRepository.findById(newClient.clientId());
+        ClientEntity clientEntity = newClient.modelToEntity();
+        if(clientEntityOptional.isPresent()) {
+            return clientRepository.saveAndFlush(clientEntity).entityToModel();
+        } else {
+            throw new NoSuchElementException("Client not found");
+        }
     }
 }

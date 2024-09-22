@@ -5,7 +5,7 @@ import de.scopevisio.vp.backend.data.enums.RegionType;
 public class DRegion implements RegionStrategy{
 
     @Override
-    public RegionType getRegionType(String plz) {
+    public RegionType getRegionType() {
         return RegionType.D;
     }
     

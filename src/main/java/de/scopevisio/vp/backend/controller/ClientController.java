@@ -22,10 +22,8 @@ public class ClientController {
                 || client.lastname().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } else {
-            return new ResponseEntity<>(
-                    clientService.createClient(client.firstname(), client.lastname()),
-                    HttpStatus.CREATED
-            );
+            Client clientToBeSave = clientService.createClient(client);
+            return new ResponseEntity<>(clientToBeSave, HttpStatus.CREATED);
         }
     }
 
@@ -33,6 +31,11 @@ public class ClientController {
     public ResponseEntity<Client> getClientById(@PathVariable final Long clientId) {
         if (clientId == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         else return ResponseEntity.ok(clientService.getClient(clientId));
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<Client> updateClient(@RequestBody Client client) {
+        return new ResponseEntity<>(clientService.updateClient(client), HttpStatus.OK);
     }
 
 }

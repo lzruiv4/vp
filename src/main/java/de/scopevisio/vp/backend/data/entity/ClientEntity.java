@@ -26,8 +26,24 @@ public class ClientEntity {
 
     private String lastname;
 
+    private String street;
+
+    private String houseNumber;
+
+    private String postCode;
+
+    private String city;
+
     public Client entityToModel(){
-        return new Client(clientId, firstname, lastname, new ArrayList<>());
+        return new Client(
+                clientId,
+                firstname,
+                lastname,
+                street,
+                houseNumber,
+                postCode,
+                city,
+                new ArrayList<>());
     }
 
 }

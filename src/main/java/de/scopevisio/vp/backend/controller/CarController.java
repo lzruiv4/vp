@@ -2,6 +2,7 @@ package de.scopevisio.vp.backend.controller;
 
 import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.service.CarService;
+import de.scopevisio.vp.backend.service.VersicherungspraemieBerechnenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class CarController {
 
     private final CarService carService;
+    private final VersicherungspraemieBerechnenService versicherungspraemieBerechnenService;
 
     @PostMapping(value = "/create")
     public ResponseEntity<Car> addCar(@RequestParam Long clientId, @RequestBody Car car) {
@@ -24,7 +26,15 @@ public class CarController {
                 car.registeredPostalCode(),
                 clientId
         );
-        return new ResponseEntity<>(carToBeSave, HttpStatus.CREATED);
+
+        return new ResponseEntity<>(new Car(
+                carToBeSave.carId(),
+                carToBeSave.carType(),
+                carToBeSave.milesPerYear(),
+                carToBeSave.regionType(),
+                versicherungspraemieBerechnenService.berechneVersicherungspraemie(carToBeSave.carId()),
+                carToBeSave.registeredPostalCode()
+        ), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")

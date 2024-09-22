@@ -40,16 +40,23 @@ public class CarStore {
         carEntityToBeSave.setRegisteredPostalCode(registeredPostalCode);
 
         Optional<ClientEntity> clientEntityOptional = clientRepository.findById(clientId);
-        clientEntityOptional.ifPresent(carEntityToBeSave::setClientEntity);
+        clientEntityOptional.ifPresentOrElse(
+                carEntityToBeSave::setClientEntity,
+                () -> {
+                    throw new NoSuchElementException("Client not found");
+                }
+        );
 
         return carRepository.save(carEntityToBeSave).entityToModel();
     }
 
-    public Car getCar(final UUID carId) {
+    public Car getCarByCarId(final UUID carId) {
         Optional<CarEntity> carEntityOptional = carRepository.findById(carId);
-        return carEntityOptional
-                .map(CarEntity::entityToModel)
-                .orElseThrow(() -> new NoSuchElementException("Car not found"));
+        if(carEntityOptional.isPresent()) {
+            return carEntityOptional.get().entityToModel();
+        } else {
+            throw new NoSuchElementException("Car not found");
+        }
     }
 
     public List<Car> getCarsByClientId(final Long clientId) {

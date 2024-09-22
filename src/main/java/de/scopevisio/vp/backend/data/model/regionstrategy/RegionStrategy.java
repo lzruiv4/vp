@@ -6,9 +6,9 @@ import java.math.BigDecimal;
 
 public interface RegionStrategy {
 
-    RegionType getRegionType(String plz);
+    RegionType getRegionType();
 
-    public default BigDecimal getRegionFakor(String plz) {
-        return getRegionType(plz).getRegionFaktor();
+    public default BigDecimal getFaktor() {
+        return getRegionType().getRegionFaktor();
     }
 }

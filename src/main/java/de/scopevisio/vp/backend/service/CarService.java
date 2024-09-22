@@ -1,6 +1,7 @@
 package de.scopevisio.vp.backend.service;
 
 import de.scopevisio.vp.backend.data.enums.CarType;
+import de.scopevisio.vp.backend.data.enums.KilometerleistungFaktorType;
 import de.scopevisio.vp.backend.data.enums.RegionType;
 import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.data.store.CarStore;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +25,10 @@ public class CarService {
                       final Long clientId
     ) {
         return carStore.addCar(carType, milesPerYear, regionType, versicherungspraemie, registeredPostalCode, clientId);
+    }
+
+    public Car getCarByCarId(final UUID carId) {
+        return carStore.getCarByCarId(carId);
     }
 
     public Car updateCar(final Car newCar) {

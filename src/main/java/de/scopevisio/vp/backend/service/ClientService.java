@@ -11,19 +11,32 @@ import org.springframework.stereotype.Service;
 public class ClientService {
 
     private final ClientStore clientStore;
-
     private final CarStore carStore;
 
-    public Client createClient(final String firstname, final String lastname){
-        return clientStore.createClient(firstname, lastname);
+    public Client createClient(final Client client){
+        return clientStore.createClient(client);
     }
 
     public Client getClient(final Long clientId){
         Client client = clientStore.getClient(clientId);
         if(client == null) throw new RuntimeException("Client not found");
         else {
-            // List<RealEstate> realEstates = realEstateStore.getRealEstateByClientId(clientId);
-            return new Client(clientId, client.firstname(), client.lastname(), carStore.getCarsByClientId(clientId));
+            return new Client(
+                    clientId,
+                    client.firstname(),
+                    client.lastname(),
+                    client.street(),
+                    client.houseNumber(),
+                    client.postCode(),
+                    client.city(),
+                    carStore.getCarsByClientId(clientId));
         }
+    }
+
+    public Client updateClient(final Client newClient) {
+        newClient.cars().forEach(carStore::updateCar);
+        Client result = clientStore.updateClient(newClient);
+        result.cars().addAll(carStore.getCarsByClientId(result.clientId()));
+        return result;
     }
 }
