@@ -1,5 +1,6 @@
 package de.scopevisio.vp.backend.data.entity;
 
+import de.scopevisio.vp.backend.data.model.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,5 +31,9 @@ public class AddressEntity {
     @ManyToOne
     @JoinColumn(name = "clientId")
     private ClientEntity clientEntity;
+
+    public Address entityToModel(){
+        return new Address(street, hNumber, postCode, city);
+    }
 
 }

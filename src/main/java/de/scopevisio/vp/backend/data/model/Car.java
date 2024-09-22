@@ -1,15 +1,18 @@
 package de.scopevisio.vp.backend.data.model;
 
-import de.scopevisio.vp.backend.data.enums.CarBrand;
 import de.scopevisio.vp.backend.data.enums.CarType;
+import de.scopevisio.vp.backend.data.enums.RegionType;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public record Car(
-        String carId,
-        CarBrand carBrand,
+        UUID carId,
         CarType carType,
         BigDecimal milesPerYear,
+        RegionType regionType,
+        BigDecimal versicherungspraemie,
         String registeredPostalCode
 ) {
+
 }
