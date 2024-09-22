@@ -4,7 +4,7 @@ logging:
 
 spring:
   datasource:
-    url: jdbc:h2:file:./db/database;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
+    url: jdbc:h2:file:./src/main/resources/db/database;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
     driver-class-name: org.h2.Driver
     username: 123
     password: ""
