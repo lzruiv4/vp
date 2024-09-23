@@ -2,21 +2,16 @@ package de.scopevisio.vp.frontend.view;
 
 import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.data.model.Client;
-import de.scopevisio.vp.backend.data.store.CarStore;
-import de.scopevisio.vp.backend.data.store.ClientStore;
 import de.scopevisio.vp.backend.service.CarService;
-import de.scopevisio.vp.backend.service.ClientService;
+import de.scopevisio.vp.backend.service.VersicherungspraemieBerechnenService;
 import de.scopevisio.vp.frontend.pmo.CarDialog;
 import de.scopevisio.vp.frontend.pmo.CarTablePmo;
-import de.scopevisio.vp.frontend.pmo.ClientDialog;
-import de.scopevisio.vp.frontend.pmo.ClientTablePmo;
 import org.linkki.core.binding.manager.BindingManager;
 import org.linkki.core.binding.manager.DefaultBindingManager;
 import org.linkki.core.ui.creation.VaadinUiCreator;
 import org.linkki.core.vaadin.component.page.AbstractPage;
 
 import java.io.Serial;
-import java.util.List;
 
 public class CarDetailPage extends AbstractPage {
 
@@ -24,13 +19,13 @@ public class CarDetailPage extends AbstractPage {
     private static final long serialVersionUID = 1L;
     private final BindingManager bindingManager;
 
-//    private final ClientService clientService;
     private final CarService carService;
+    private final VersicherungspraemieBerechnenService versicherungspraemieBerechnenService;
     private Client client;
 
-    public CarDetailPage(Client client, CarService carService) {
-//        this.clientService = new ClientService(clientStore, carStore);
+    public CarDetailPage(Client client, CarService carService, VersicherungspraemieBerechnenService versicherungspraemieBerechnenService) {
         this.carService = carService;
+        this.versicherungspraemieBerechnenService = versicherungspraemieBerechnenService;
         this.client = client;
 
         this.bindingManager = new DefaultBindingManager();
@@ -57,6 +52,7 @@ public class CarDetailPage extends AbstractPage {
     }
 
     private void getResult() {
+        updateCarVersicherungspraemie();
         add(VaadinUiCreator
                 .createComponent(new CarTablePmo(
                                 () -> carService.getCarsByClientId(client.getClientId()),
@@ -64,6 +60,14 @@ public class CarDetailPage extends AbstractPage {
                         ), getBindingContext()
                 )
         );
+    }
+
+    private void updateCarVersicherungspraemie() {
+        client.getCars().forEach(car -> {
+            if(car.getVersicherungspraemie() == null)  {
+                versicherungspraemieBerechnenService.berechneVersicherungspraemie(car.getCarId());
+            }
+        });
     }
 
     @Override

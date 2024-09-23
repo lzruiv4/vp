@@ -39,14 +39,13 @@ public class VPPage extends AbstractPage {
                 "Neu Client",
                 () -> {  // Handler
                     clientService.createClient(newClient);
-                    //search();
                     getBindingContext().updateUi();
                 },
                 newClient
         );
     }
 
-    private void addSearchResultSection() {
+    private void getClients() {
         add(VaadinUiCreator
                 .createComponent(new ClientTablePmo(
                                 () -> clients,
@@ -58,7 +57,7 @@ public class VPPage extends AbstractPage {
 
     @Override
     public void createContent() {
-        addSearchResultSection();
+        getClients();
     }
 
     @Override
