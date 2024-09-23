@@ -5,6 +5,7 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import de.scopevisio.vp.backend.data.model.Car;
 import org.linkki.core.defaults.columnbased.pmo.SimpleTablePmo;
 import org.linkki.core.ui.element.annotation.UIButton;
+import org.linkki.core.ui.element.annotation.UILink;
 import org.linkki.core.ui.layout.annotation.SectionHeader;
 import org.linkki.core.ui.layout.annotation.UISection;
 import org.linkki.util.handler.Handler;
@@ -40,5 +41,11 @@ public class CarTablePmo extends SimpleTablePmo<Car, CarRowPmo> {
     @Override
     protected CarRowPmo createRow(Car car) {
         return new CarRowPmo(car);
+    }
+
+    @SectionHeader
+    @UILink(position = 30, caption = "Back")
+    public String getBack() {
+        return "clients";
     }
 }

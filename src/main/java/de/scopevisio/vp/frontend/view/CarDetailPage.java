@@ -9,6 +9,7 @@ import de.scopevisio.vp.frontend.pmo.CarTablePmo;
 import org.linkki.core.binding.manager.BindingManager;
 import org.linkki.core.binding.manager.DefaultBindingManager;
 import org.linkki.core.ui.creation.VaadinUiCreator;
+import org.linkki.core.ui.element.annotation.UILink;
 import org.linkki.core.vaadin.component.page.AbstractPage;
 
 import java.io.Serial;
