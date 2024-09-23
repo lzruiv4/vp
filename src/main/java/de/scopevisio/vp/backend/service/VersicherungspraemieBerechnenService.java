@@ -20,7 +20,7 @@ public class VersicherungspraemieBerechnenService {
     public BigDecimal berechneVersicherungspraemie(final UUID carId) {
         Car car = carStore.getCarByCarId(carId);
         BigDecimal versicherungspraemie = berechneKilometerleistungFaktor(car.milesPerYear())
-                .multiply(berechneFahrzeugTypFakor(car.carType()))
+                .multiply(berechneFahrzeugTypFaktor(car.carType()))
                 .multiply(berechneRegionFaktor(car.registeredPostalCode()));
 
         carStore.updateCar(
@@ -37,21 +37,21 @@ public class VersicherungspraemieBerechnenService {
     public BigDecimal berechneKilometerleistungFaktor(final BigDecimal milesPerYear) {
         if(milesPerYear.compareTo(BigDecimal.valueOf(0)) >= 0 &&
                 milesPerYear.compareTo(BigDecimal.valueOf(5000)) <= 0) {
-            return KilometerleistungFaktorType.HALF.getKilometerleitsungFaktor();
+            return KilometerleistungFaktorType.HALF.getKilometerleistungFaktor();
         } else if (milesPerYear.compareTo(BigDecimal.valueOf(5001)) >= 0
                 && milesPerYear.compareTo(BigDecimal.valueOf(10000)) <= 0) {
-            return KilometerleistungFaktorType.ONE.getKilometerleitsungFaktor();
+            return KilometerleistungFaktorType.ONE.getKilometerleistungFaktor();
         } else if (milesPerYear.compareTo(BigDecimal.valueOf(10001)) >= 0
                 && milesPerYear.compareTo(BigDecimal.valueOf(20000)) <= 0) {
-            return KilometerleistungFaktorType.ONEANDAHALF.getKilometerleitsungFaktor();
+            return KilometerleistungFaktorType.ONEANDAHALF.getKilometerleistungFaktor();
         } else if(milesPerYear.compareTo(BigDecimal.valueOf(20000)) > 0) {
-            return KilometerleistungFaktorType.TWO.getKilometerleitsungFaktor();
+            return KilometerleistungFaktorType.TWO.getKilometerleistungFaktor();
         } else {
             throw new IllegalArgumentException("Something is going wrong, please check your input");
         }
     }
 
-    public BigDecimal berechneFahrzeugTypFakor(final CarType carType) {
+    public BigDecimal berechneFahrzeugTypFaktor(final CarType carType) {
         return carType.equals(CarType.LKW) ? CarType.LKW.getFahrzeugTypeFaktor() : CarType.PKW.getFahrzeugTypeFaktor();
     }
 

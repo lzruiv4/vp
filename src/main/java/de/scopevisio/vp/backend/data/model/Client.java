@@ -1,19 +1,27 @@
 package de.scopevisio.vp.backend.data.model;
 
 import de.scopevisio.vp.backend.data.entity.ClientEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
-public record Client(
-        Long clientId,
-        String firstname,
-        String lastname,
-        String street,
-        String houseNumber,
-        String postCode,
-        String city,
-        List<Car> cars
-) {
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+public class Client {
+
+    private Long clientId;
+    private String firstname;
+    private String lastname;
+    private String street;
+    private String houseNumber;
+    private String postCode;
+    private String city;
+    private List<Car> cars;
 
     public ClientEntity modelToEntity() {
         return new ClientEntity(

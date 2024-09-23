@@ -16,10 +16,10 @@ public class ClientController {
 
     @PostMapping(value = "/create")
     public ResponseEntity<Client> createClient(@RequestBody Client client) {
-        if (client.firstname() == null
-                || client.lastname() == null
-                || client.firstname().isEmpty()
-                || client.lastname().isEmpty()) {
+        if (client.getFirstname() == null
+                || client.getLastname() == null
+                || client.getFirstname().isEmpty()
+                || client.getLastname().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } else {
             Client clientToBeSave = clientService.createClient(client);

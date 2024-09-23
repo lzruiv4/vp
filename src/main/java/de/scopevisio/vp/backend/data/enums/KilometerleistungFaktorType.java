@@ -14,5 +14,5 @@ public enum KilometerleistungFaktorType {
     ONEANDAHALF(BigDecimal.valueOf(1.5)),
     TWO(BigDecimal.valueOf(2));
 
-    private final BigDecimal kilometerleitsungFaktor;
+    private final BigDecimal kilometerleistungFaktor;
 }

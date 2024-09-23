@@ -1,6 +1,5 @@
 package de.scopevisio.vp.backend.data.entity;
 
-
 import de.scopevisio.vp.backend.data.enums.CarType;
 import de.scopevisio.vp.backend.data.enums.RegionType;
 import de.scopevisio.vp.backend.data.model.Car;

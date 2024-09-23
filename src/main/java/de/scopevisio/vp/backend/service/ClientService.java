@@ -6,6 +6,8 @@ import de.scopevisio.vp.backend.data.store.ClientStore;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ClientService {
@@ -23,20 +25,24 @@ public class ClientService {
         else {
             return new Client(
                     clientId,
-                    client.firstname(),
-                    client.lastname(),
-                    client.street(),
-                    client.houseNumber(),
-                    client.postCode(),
-                    client.city(),
+                    client.getFirstname(),
+                    client.getLastname(),
+                    client.getStreet(),
+                    client.getHouseNumber(),
+                    client.getPostCode(),
+                    client.getCity(),
                     carStore.getCarsByClientId(clientId));
         }
     }
 
+    public List<Client> getAllClients() {
+        return clientStore.getAllClients();
+    }
+
     public Client updateClient(final Client newClient) {
-        newClient.cars().forEach(carStore::updateCar);
+        newClient.getCars().forEach(carStore::updateCar);
         Client result = clientStore.updateClient(newClient);
-        result.cars().addAll(carStore.getCarsByClientId(result.clientId()));
+        result.getCars().addAll(carStore.getCarsByClientId(result.getClientId()));
         return result;
     }
 }

@@ -1,0 +1,6 @@
+#FileLock
+#Mon Sep 23 15:12:34 CEST 2024
+server=192.168.0.160\:57273
+hostName=mbp-zray
+method=file
+id=1921f0329f235965f82e62b485700a3ae8053d85fc4
