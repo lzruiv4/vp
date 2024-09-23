@@ -9,9 +9,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class RegionalService {
+
+    private final List<RegionalFromCSV> regions;
+
+    public RegionalService() {
+        this.regions = readRegionalFromCsv("src/main/resources/static/postcodes.csv");
+    }
 
     public List<RegionalFromCSV> readRegionalFromCsv(String path) {
         List<RegionalFromCSV> regionalFromCSVS = new ArrayList<>();
@@ -21,12 +29,20 @@ public class RegionalService {
 
             List<String[]> rows = reader.readAll();
             for (String[] row : rows) {
-                regionalFromCSVS.add(new RegionalFromCSV(row[2], row[4], row[5], row[6], row[7]));
+                regionalFromCSVS.add(new RegionalFromCSV(row[2], row[0], row[3], row[6], row[8]));
             }
 
         } catch (IOException | CsvException e) {
             e.printStackTrace();
         }
         return regionalFromCSVS;
+    }
+
+    public Map<String, List<String>> getPlzOrts() {
+         return regions.stream()
+                 .collect(Collectors.groupingBy(
+                         RegionalFromCSV::getPostleitzahl,
+                         Collectors.mapping(RegionalFromCSV::getOrt, Collectors.toList()))
+                 );
     }
 }

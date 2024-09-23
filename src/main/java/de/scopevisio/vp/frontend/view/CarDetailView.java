@@ -7,6 +7,7 @@ import de.scopevisio.vp.backend.service.CarService;
 import de.scopevisio.vp.backend.service.ClientService;
 import de.scopevisio.vp.backend.service.VersicherungspraemieBerechnenService;
 import de.scopevisio.vp.frontend.ui.VPLayout;
+import lombok.AllArgsConstructor;
 import org.linkki.framework.ui.component.Headline;
 
 import java.util.Optional;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @PageTitle("Cars")
 @Route(value = "detail", layout = VPLayout.class)
+@AllArgsConstructor
 public class CarDetailView extends VerticalLayout implements HasUrlParameter<String> {
 
     private static final long serialVersionUID = 1L;
@@ -22,23 +24,13 @@ public class CarDetailView extends VerticalLayout implements HasUrlParameter<Str
     private final CarService carService;
     private final VersicherungspraemieBerechnenService versicherungspraemieBerechnenService;
 
-    private Optional<Client> clientOptional;
-
-    public CarDetailView(
-            ClientService clientService,
-            CarService carService,
-            VersicherungspraemieBerechnenService versicherungspraemieBerechnenService
-    ) {
-        this.clientService = clientService;
-        this.carService = carService;
-        this.versicherungspraemieBerechnenService = versicherungspraemieBerechnenService;
-        add(new Headline("Cars"));
-    }
-
     @Override
     public void setParameter(BeforeEvent beforeEvent, String clientId) {
-        clientOptional = Optional.ofNullable(clientId).map(client -> clientService.getClient(Long.valueOf(clientId)));
-        CarDetailPage carDetailPage = new CarDetailPage(clientOptional.get(), carService, versicherungspraemieBerechnenService);
-        add(carDetailPage);
+        Optional<Client> clientOptional = Optional.ofNullable(clientId).map(client -> clientService.getClient(Long.valueOf(clientId)));
+        if(clientOptional.isPresent()) {
+            Client client = clientOptional.get();
+            add(new Headline(client.getFirstname() + " " + client.getLastname() + " 's Cars"));
+            add(new CarDetailPage(clientOptional.get(), carService, versicherungspraemieBerechnenService));
+        }
     }
 }

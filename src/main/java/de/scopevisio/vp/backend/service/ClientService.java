@@ -14,13 +14,26 @@ public class ClientService {
 
     private final ClientStore clientStore;
     private final CarStore carStore;
+    private RegionalService regionalService = new RegionalService();
 
     public Client createClient(final Client client){
+        getOrt(client);
         return clientStore.createClient(client);
+    }
+
+    public void getOrt(final Client client) {
+        List<String> orts = regionalService.getPlzOrts().get(client.getPostCode());
+        if(!regionalService.getPlzOrts().containsKey(client.getPostCode())){
+            client.setCity("");
+        }
+        if(orts != null) {
+            client.setCity(orts.get(0));
+        }
     }
 
     public Client getClient(final Long clientId){
         Client client = clientStore.getClient(clientId);
+
         if(client == null) throw new RuntimeException("Client not found");
         else {
             return new Client(

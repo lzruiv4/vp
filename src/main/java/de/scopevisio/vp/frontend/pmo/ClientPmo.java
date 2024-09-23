@@ -40,9 +40,4 @@ public class ClientPmo {
     public void postCode(String postCode) {
         // model binding
     }
-
-    @UITextField(position = 70, label = "City", modelAttribute = "city")
-    public void city(String city) {
-        // model binding
-    }
 }

@@ -9,7 +9,6 @@ import de.scopevisio.vp.frontend.pmo.CarTablePmo;
 import org.linkki.core.binding.manager.BindingManager;
 import org.linkki.core.binding.manager.DefaultBindingManager;
 import org.linkki.core.ui.creation.VaadinUiCreator;
-import org.linkki.core.ui.element.annotation.UILink;
 import org.linkki.core.vaadin.component.page.AbstractPage;
 
 import java.io.Serial;
@@ -24,7 +23,11 @@ public class CarDetailPage extends AbstractPage {
     private final VersicherungspraemieBerechnenService versicherungspraemieBerechnenService;
     private Client client;
 
-    public CarDetailPage(Client client, CarService carService, VersicherungspraemieBerechnenService versicherungspraemieBerechnenService) {
+    public CarDetailPage(
+            Client client,
+            CarService carService,
+            VersicherungspraemieBerechnenService versicherungspraemieBerechnenService
+    ) {
         this.carService = carService;
         this.versicherungspraemieBerechnenService = versicherungspraemieBerechnenService;
         this.client = client;
@@ -65,6 +68,7 @@ public class CarDetailPage extends AbstractPage {
 
     private void updateCarVersicherungspraemie() {
         client.getCars().forEach(car -> {
+            versicherungspraemieBerechnenService.berechneRegionType(car);
             if(car.getVersicherungspraemie() == null)  {
                 versicherungspraemieBerechnenService.berechneVersicherungspraemie(car.getCarId());
             }

@@ -28,12 +28,7 @@ public class CarPmo {
         // model binding
     }
 
-    @UIComboBox(position = 40, label = "Region Type", modelAttribute = "regionType")
-    public void regionType() {
-        // model binding
-    }
-
-    @UITextField(position = 60, label = "Registered postal code", modelAttribute = "registeredPostalCode")
+    @UITextField(position = 40, label = "Registered postal code", modelAttribute = "registeredPostalCode")
     public void registeredPostalCode() {
         // model binding
     }

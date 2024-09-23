@@ -21,13 +21,13 @@ public class VersicherungspraemieBerechnenService {
         Car car = carStore.getCarByCarId(carId);
         BigDecimal versicherungspraemie = berechneKilometerleistungFaktor(car.getMilesPerYear())
                 .multiply(berechneFahrzeugTypFaktor(car.getCarType()))
-                .multiply(berechneRegionFaktor(car.getRegisteredPostalCode()));
+                .multiply(berechneRegionFaktor(car));
 
         carStore.updateCar(
                 new Car(carId,
                         car.getCarType(),
                         car.getMilesPerYear(),
-                        car.getRegionType(),
+                        null,
                         versicherungspraemie,
                         car.getRegisteredPostalCode())
         );
@@ -55,22 +55,28 @@ public class VersicherungspraemieBerechnenService {
         return carType.equals(CarType.LKW) ? CarType.LKW.getFahrzeugTypeFaktor() : CarType.PKW.getFahrzeugTypeFaktor();
     }
 
-    public BigDecimal berechneRegionFaktor(final String postleitzahl) {
+    public void berechneRegionType(final Car car) {
         RegionStrategy regionStrategy;
-        if (postleitzahl.compareTo("00000") >= 0 && postleitzahl.compareTo("19999") <= 0) {
+        if (car.getRegisteredPostalCode().compareTo("00000") >= 0 && car.getRegisteredPostalCode().compareTo("19999") <= 0) {
             regionStrategy = new ARegion();
-        } else if (postleitzahl.compareTo("20000") >= 0 && postleitzahl.compareTo("39999") <= 0) {
+        } else if (car.getRegisteredPostalCode().compareTo("20000") >= 0 && car.getRegisteredPostalCode().compareTo("39999") <= 0) {
             regionStrategy = new BRegion();
-        } else if (postleitzahl.compareTo("40000") >= 0 && postleitzahl.compareTo("59999") <= 0) {
+        } else if (car.getRegisteredPostalCode().compareTo("40000") >= 0 && car.getRegisteredPostalCode().compareTo("59999") <= 0) {
             regionStrategy = new CRegion();
-        } else if (postleitzahl.compareTo("60000") >= 0 && postleitzahl.compareTo("79999") <= 0) {
+        } else if (car.getRegisteredPostalCode().compareTo("60000") >= 0 && car.getRegisteredPostalCode().compareTo("79999") <= 0) {
             regionStrategy = new DRegion();
-        } else if (postleitzahl.compareTo("80000") >= 0 && postleitzahl.compareTo("99999") <= 0) {
+        } else if (car.getRegisteredPostalCode().compareTo("80000") >= 0 && car.getRegisteredPostalCode().compareTo("99999") <= 0) {
             regionStrategy = new ERegion();
         } else {
             throw new NumberFormatException("Input is wrong");
         }
-        return regionStrategy.getFaktor();
+        car.setRegionType(regionStrategy.getRegionType());
+        carStore.updateCar(car);
+    }
+
+    public BigDecimal berechneRegionFaktor(final Car car) {
+        berechneRegionType(car);
+        return car.getRegionType().getRegionFaktor();
     }
 
 }

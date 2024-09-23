@@ -1,8 +1,6 @@
 package de.scopevisio.vp.frontend.view;
 
 import de.scopevisio.vp.backend.data.model.Client;
-import de.scopevisio.vp.backend.data.store.CarStore;
-import de.scopevisio.vp.backend.data.store.ClientStore;
 import de.scopevisio.vp.backend.service.ClientService;
 import de.scopevisio.vp.frontend.pmo.ClientDialog;
 import de.scopevisio.vp.frontend.pmo.ClientTablePmo;
@@ -24,9 +22,8 @@ public class VPPage extends AbstractPage {
 
     private final BindingManager bindingManager;
 
-    public VPPage(CarStore carStore, ClientStore clientStore) {
-        this.clientService = new ClientService(clientStore, carStore);
-
+    public VPPage(ClientService clientService) {
+        this.clientService = clientService;
         this.clients = clientService.getAllClients();
         this.bindingManager = new DefaultBindingManager();
 
@@ -46,6 +43,7 @@ public class VPPage extends AbstractPage {
     }
 
     private void getClients() {
+        //updateClient();
         add(VaadinUiCreator
                 .createComponent(new ClientTablePmo(
                                 () -> clients,
@@ -53,6 +51,10 @@ public class VPPage extends AbstractPage {
                         ), getBindingContext()
                 )
         );
+    }
+
+    private void updateClient() {
+        clients.forEach(clientService::getOrt);
     }
 
     @Override
