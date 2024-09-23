@@ -27,7 +27,7 @@ public class VersicherungspraemieBerechnenService {
                 new Car(carId,
                         car.getCarType(),
                         car.getMilesPerYear(),
-                        null,
+                        car.getRegionType(),
                         versicherungspraemie,
                         car.getRegisteredPostalCode())
         );

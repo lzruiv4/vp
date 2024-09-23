@@ -27,6 +27,8 @@ public class CarController {
                 clientId
         );
 
+        versicherungspraemieBerechnenService.berechneRegionType(carToBeSave);
+
         return new ResponseEntity<>(new Car(
                 carToBeSave.getCarId(),
                 carToBeSave.getCarType(),
