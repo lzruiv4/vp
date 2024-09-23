@@ -19,17 +19,17 @@ public class VersicherungspraemieBerechnenService {
 
     public BigDecimal berechneVersicherungspraemie(final UUID carId) {
         Car car = carStore.getCarByCarId(carId);
-        BigDecimal versicherungspraemie = berechneKilometerleistungFaktor(car.milesPerYear())
-                .multiply(berechneFahrzeugTypFaktor(car.carType()))
-                .multiply(berechneRegionFaktor(car.registeredPostalCode()));
+        BigDecimal versicherungspraemie = berechneKilometerleistungFaktor(car.getMilesPerYear())
+                .multiply(berechneFahrzeugTypFaktor(car.getCarType()))
+                .multiply(berechneRegionFaktor(car.getRegisteredPostalCode()));
 
         carStore.updateCar(
                 new Car(carId,
-                        car.carType(),
-                        car.milesPerYear(),
-                        car.regionType(),
+                        car.getCarType(),
+                        car.getMilesPerYear(),
+                        car.getRegionType(),
                         versicherungspraemie,
-                        car.registeredPostalCode())
+                        car.getRegisteredPostalCode())
         );
         return versicherungspraemie;
     }

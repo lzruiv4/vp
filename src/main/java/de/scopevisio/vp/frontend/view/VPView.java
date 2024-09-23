@@ -10,14 +10,14 @@ import de.scopevisio.vp.backend.data.store.ClientStore;
 import de.scopevisio.vp.frontend.ui.VPLayout;
 import org.linkki.framework.ui.component.Headline;
 
-@PageTitle("de/scopevisio/vp")
+@PageTitle("VP System")
 @Route(value = "clients", layout = VPLayout.class)
 public class VPView extends VerticalLayout {
 
     private static final long serialVersionUID = 1L;
 
     public VPView(CarRepository carRepository, ClientRepository clientRepository) {
-        add(new Headline("Clients Übersicht"));
+        add(new Headline("Clients overview"));
         setSizeFull();
         VPPage page = new VPPage(new CarStore(carRepository, clientRepository), new ClientStore(clientRepository));
         add(page);

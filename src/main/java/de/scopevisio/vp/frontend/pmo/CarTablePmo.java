@@ -2,7 +2,7 @@ package de.scopevisio.vp.frontend.pmo;
 
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import de.scopevisio.vp.backend.data.model.Client;
+import de.scopevisio.vp.backend.data.model.Car;
 import org.linkki.core.defaults.columnbased.pmo.SimpleTablePmo;
 import org.linkki.core.ui.element.annotation.UIButton;
 import org.linkki.core.ui.layout.annotation.SectionHeader;
@@ -13,38 +13,32 @@ import java.util.List;
 import java.util.function.Supplier;
 
 @UISection(caption = "Client List")
-public class ClientTablePmo extends SimpleTablePmo<Client, ClientRowPmo> {
+public class CarTablePmo extends SimpleTablePmo<Car, CarRowPmo> {
 
-    private final Handler addClientHandler;
+    private final Handler addCarHandler;
 
-    public ClientTablePmo(
-            Supplier<List<? extends Client>> addClientSupplier,
-            Handler addClientHandler
+    public CarTablePmo(
+            Supplier<List<? extends Car>> addCarSupplier,
+            Handler addCarHandler
     ) {
-        super(addClientSupplier.get());
-        this.addClientHandler = addClientHandler;
+        super(addCarSupplier.get());
+        this.addCarHandler = addCarHandler;
     }
 
     @SectionHeader
     @UIButton(
             position = 10,
-            caption = "New Client",
+            caption = "",
             showIcon = true,
             icon = VaadinIcon.PLUS,
             variants = ButtonVariant.LUMO_TERTIARY_INLINE
     )
     public void addNewCar() {
-        addClientHandler.apply();
+        addCarHandler.apply();
     }
 
     @Override
-    protected ClientRowPmo createRow(Client client) {
-        return new ClientRowPmo(client);
-    }
-
-    @Override
-    public int getPageLength() {
-        // Max. 10 Clients werden angezeigt.
-        return 15;
+    protected CarRowPmo createRow(Car car) {
+        return new CarRowPmo(car);
     }
 }

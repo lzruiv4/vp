@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -28,6 +29,9 @@ public class CarService {
 
     public Car getCarByCarId(final UUID carId) {
         return carStore.getCarByCarId(carId);
+    }
+    public List<Car> getCarsByClientId(final Long clientId) {
+        return carStore.getCarsByClientId(clientId);
     }
 
     public Car updateCar(final Car newCar) {

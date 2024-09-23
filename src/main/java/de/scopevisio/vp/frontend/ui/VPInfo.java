@@ -6,7 +6,7 @@ import org.linkki.framework.ui.application.ApplicationInfo;
 
 public class VPInfo implements ApplicationInfo {
 
-    public static final String APPLICATION_NAME = "de/scopevisio/vp";
+    public static final String APPLICATION_NAME = "VP";
 
     @Override
     public String getApplicationName() {
@@ -20,11 +20,11 @@ public class VPInfo implements ApplicationInfo {
 
     @Override
     public String getApplicationDescription() {
-        return "de/scopevisio/vp";
+        return "Versicherungsprämie System";
     }
 
     @Override
     public String getCopyright() {
-        return "© Faktor Zehn " + Year.now();
+        return "© " + Year.now();
     }
 }

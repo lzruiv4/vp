@@ -67,7 +67,7 @@ public class CarStore {
     }
 
     public Car updateCar(final Car newCar) {
-        Optional<CarEntity> carEntityOptional = carRepository.findById(newCar.carId());
+        Optional<CarEntity> carEntityOptional = carRepository.findById(newCar.getCarId());
         CarEntity carEntity = newCar.modelToEntity();
         carEntityOptional.ifPresentOrElse(
                 entity -> carEntity.setClientEntity(entity.getClientEntity()),
