@@ -49,15 +49,6 @@ public class CarStore {
         return carRepository.save(carEntityToBeSave).entityToModel();
     }
 
-    public Car getCarByCarId(final UUID carId) {
-        Optional<CarEntity> carEntityOptional = carRepository.findById(carId);
-        if (carEntityOptional.isPresent()) {
-            return carEntityOptional.get().entityToModel();
-        } else {
-            throw new NoSuchElementException("Car not found");
-        }
-    }
-
     public List<Car> getCarsByClientId(final Long clientId) {
         return carRepository.findAll().stream()
                 .filter(carEntity -> Objects.equals(carEntity.getClientEntity().getClientId(), clientId))

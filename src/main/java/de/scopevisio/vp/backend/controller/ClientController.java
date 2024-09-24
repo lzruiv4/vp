@@ -31,8 +31,7 @@ public class ClientController {
 
     @GetMapping(value = "/{clientId}")
     public ResponseEntity<Client> getClientById(@PathVariable final Long clientId) {
-        if (clientId == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        else return ResponseEntity.ok(clientService.getClient(clientId));
+        return ResponseEntity.ok(clientService.getClient(clientId));
     }
 
     @PutMapping("/update")

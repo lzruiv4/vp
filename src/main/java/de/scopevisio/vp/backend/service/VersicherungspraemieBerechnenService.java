@@ -58,10 +58,8 @@ public class VersicherungspraemieBerechnenService {
             regionStrategy = new CRegion();
         } else if (car.getRegisteredPostalCode().compareTo("60000") >= 0 && car.getRegisteredPostalCode().compareTo("79999") <= 0) {
             regionStrategy = new DRegion();
-        } else if (car.getRegisteredPostalCode().compareTo("80000") >= 0 && car.getRegisteredPostalCode().compareTo("99999") <= 0) {
-            regionStrategy = new ERegion();
         } else {
-            throw new NumberFormatException("Input is wrong");
+            regionStrategy = new ERegion();
         }
         car.setRegionType(regionStrategy.getRegionType());
         carStore.updateCar(car);
