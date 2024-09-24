@@ -6,7 +6,4 @@ public interface RegionStrategy {
 
     RegionType getRegionType();
 
-//    public default BigDecimal getFaktor() {
-//        return getRegionType().getRegionFaktor();
-//    }
 }

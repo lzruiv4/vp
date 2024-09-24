@@ -16,36 +16,25 @@ public class ClientService {
     private final CarStore carStore;
     private RegionalService regionalService = new RegionalService();
 
-    public Client createClient(final Client client){
-        getOrt(client);
+    public Client createClient(final Client client) {
+        automaticSetCity(client);
         return clientStore.createClient(client);
     }
 
-    public void getOrt(final Client client) {
+    public void automaticSetCity(final Client client) {
         List<String> orts = regionalService.getPlzOrts().get(client.getPostCode());
-        if(!regionalService.getPlzOrts().containsKey(client.getPostCode())){
+        if (!regionalService.getPlzOrts().containsKey(client.getPostCode())) {
             client.setCity("");
         }
-        if(orts != null) {
+        if (orts != null) {
             client.setCity(orts.get(0));
         }
     }
 
-    public Client getClient(final Long clientId){
+    public Client getClient(final Long clientId) {
         Client client = clientStore.getClient(clientId);
-
-        if(client == null) throw new RuntimeException("Client not found");
-        else {
-            return new Client(
-                    clientId,
-                    client.getFirstname(),
-                    client.getLastname(),
-                    client.getStreet(),
-                    client.getHouseNumber(),
-                    client.getPostCode(),
-                    client.getCity(),
-                    carStore.getCarsByClientId(clientId));
-        }
+        client.setCars(carStore.getCarsByClientId(clientId));
+        return client;
     }
 
     public List<Client> getAllClients() {
@@ -54,6 +43,7 @@ public class ClientService {
 
     public Client updateClient(final Client newClient) {
         newClient.getCars().forEach(carStore::updateCar);
+        automaticSetCity(newClient);
         Client result = clientStore.updateClient(newClient);
         result.getCars().addAll(carStore.getCarsByClientId(result.getClientId()));
         return result;

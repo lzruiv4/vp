@@ -26,6 +26,7 @@ public class ClientPmo {
     public void lastname(String lastname) {
         // model binding
     }
+
     @UITextField(position = 40, label = "Street", modelAttribute = "street")
     public void street(String street) {
         // model binding

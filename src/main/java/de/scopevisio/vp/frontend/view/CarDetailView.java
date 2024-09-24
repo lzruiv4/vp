@@ -27,10 +27,10 @@ public class CarDetailView extends VerticalLayout implements HasUrlParameter<Str
     @Override
     public void setParameter(BeforeEvent beforeEvent, String clientId) {
         Optional<Client> clientOptional = Optional.ofNullable(clientId).map(client -> clientService.getClient(Long.valueOf(clientId)));
-        if(clientOptional.isPresent()) {
+        if (clientOptional.isPresent()) {
             Client client = clientOptional.get();
             add(new Headline(client.getFirstname() + " " + client.getLastname() + " 's Cars"));
-            add(new CarDetailPage(clientOptional.get(), carService, versicherungspraemieBerechnenService));
+            add(new CarDetailPage(client, carService, versicherungspraemieBerechnenService));
         }
     }
 }

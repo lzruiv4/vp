@@ -2,11 +2,11 @@ package de.scopevisio.vp.backend.data.model.regionstrategy;
 
 import de.scopevisio.vp.backend.data.enums.RegionType;
 
-public class CRegion implements RegionStrategy{
+public class CRegion implements RegionStrategy {
 
     @Override
     public RegionType getRegionType() {
         return RegionType.C;
     }
-    
+
 }

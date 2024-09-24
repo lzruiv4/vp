@@ -56,7 +56,6 @@ public class CarDetailPage extends AbstractPage {
     }
 
     private void getResult() {
-        updateCarVersicherungspraemie();
         add(VaadinUiCreator
                 .createComponent(new CarTablePmo(
                                 () -> carService.getCarsByClientId(client.getClientId()),
@@ -66,15 +65,6 @@ public class CarDetailPage extends AbstractPage {
         );
     }
 
-    private void updateCarVersicherungspraemie() {
-        client.getCars().forEach(car -> {
-            versicherungspraemieBerechnenService.berechneRegionType(car);
-            if(car.getVersicherungspraemie() == null)  {
-                versicherungspraemieBerechnenService.berechneVersicherungspraemie(car.getCarId());
-            }
-        });
-    }
-
     @Override
     protected BindingManager getBindingManager() {
         return bindingManager;
@@ -82,6 +72,7 @@ public class CarDetailPage extends AbstractPage {
 
     @Override
     public void createContent() {
+        client.getCars().forEach(versicherungspraemieBerechnenService::berechneVersicherungspraemie);
         getResult();
     }
 }

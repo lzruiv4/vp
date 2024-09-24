@@ -34,7 +34,7 @@ public class ClientEntity {
 
     private String city;
 
-    public Client entityToModel(){
+    public Client entityToModel() {
         return new Client(
                 clientId,
                 firstname,

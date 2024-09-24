@@ -12,7 +12,7 @@ import org.linkki.core.vaadin.component.page.AbstractPage;
 import java.io.Serial;
 import java.util.List;
 
-public class VPPage extends AbstractPage {
+public class ClientPage extends AbstractPage {
 
     @Serial
     private static final long serialVersionUID = 1L;
@@ -22,7 +22,7 @@ public class VPPage extends AbstractPage {
 
     private final BindingManager bindingManager;
 
-    public VPPage(ClientService clientService) {
+    public ClientPage(ClientService clientService) {
         this.clientService = clientService;
         this.clients = clientService.getAllClients();
         this.bindingManager = new DefaultBindingManager();
@@ -51,10 +51,6 @@ public class VPPage extends AbstractPage {
                         ), getBindingContext()
                 )
         );
-    }
-
-    private void updateClient() {
-        clients.forEach(clientService::getOrt);
     }
 
     @Override

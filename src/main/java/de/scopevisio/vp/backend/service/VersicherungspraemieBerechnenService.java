@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.UUID;
+import java.math.RoundingMode;
 
 @Service
 @RequiredArgsConstructor
@@ -17,25 +17,18 @@ public class VersicherungspraemieBerechnenService {
 
     private final CarStore carStore;
 
-    public BigDecimal berechneVersicherungspraemie(final UUID carId) {
-        Car car = carStore.getCarByCarId(carId);
+    public BigDecimal berechneVersicherungspraemie(final Car car) {
         BigDecimal versicherungspraemie = berechneKilometerleistungFaktor(car.getMilesPerYear())
                 .multiply(berechneFahrzeugTypFaktor(car.getCarType()))
-                .multiply(berechneRegionFaktor(car));
+                .multiply(berechneRegionFaktor(car)).setScale(3, RoundingMode.HALF_UP);
 
-        carStore.updateCar(
-                new Car(carId,
-                        car.getCarType(),
-                        car.getMilesPerYear(),
-                        car.getRegionType(),
-                        versicherungspraemie,
-                        car.getRegisteredPostalCode())
-        );
+        car.setVersicherungspraemie(versicherungspraemie);
+        carStore.updateCar(car);
         return versicherungspraemie;
     }
 
     public BigDecimal berechneKilometerleistungFaktor(final BigDecimal milesPerYear) {
-        if(milesPerYear.compareTo(BigDecimal.valueOf(0)) >= 0 &&
+        if (milesPerYear.compareTo(BigDecimal.valueOf(0)) >= 0 &&
                 milesPerYear.compareTo(BigDecimal.valueOf(5000)) <= 0) {
             return KilometerleistungFaktorType.HALF.getKilometerleistungFaktor();
         } else if (milesPerYear.compareTo(BigDecimal.valueOf(5001)) >= 0
@@ -44,7 +37,7 @@ public class VersicherungspraemieBerechnenService {
         } else if (milesPerYear.compareTo(BigDecimal.valueOf(10001)) >= 0
                 && milesPerYear.compareTo(BigDecimal.valueOf(20000)) <= 0) {
             return KilometerleistungFaktorType.ONEANDAHALF.getKilometerleistungFaktor();
-        } else if(milesPerYear.compareTo(BigDecimal.valueOf(20000)) > 0) {
+        } else if (milesPerYear.compareTo(BigDecimal.valueOf(20000)) > 0) {
             return KilometerleistungFaktorType.TWO.getKilometerleistungFaktor();
         } else {
             throw new IllegalArgumentException("Something is going wrong, please check your input");

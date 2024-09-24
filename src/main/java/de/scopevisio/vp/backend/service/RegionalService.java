@@ -29,7 +29,7 @@ public class RegionalService {
 
             List<String[]> rows = reader.readAll();
             for (String[] row : rows) {
-                regionalFromCSVS.add(new RegionalFromCSV(row[2], row[0], row[3], row[6], row[8]));
+                regionalFromCSVS.add(new RegionalFromCSV(row[2], row[0], row[7], row[6], row[8]));
             }
 
         } catch (IOException | CsvException e) {
@@ -39,10 +39,10 @@ public class RegionalService {
     }
 
     public Map<String, List<String>> getPlzOrts() {
-         return regions.stream()
-                 .collect(Collectors.groupingBy(
-                         RegionalFromCSV::getPostleitzahl,
-                         Collectors.mapping(RegionalFromCSV::getOrt, Collectors.toList()))
-                 );
+        return regions.stream()
+                .collect(Collectors.groupingBy(
+                        RegionalFromCSV::getPostleitzahl,
+                        Collectors.mapping(RegionalFromCSV::getOrt, Collectors.toList()))
+                );
     }
 }

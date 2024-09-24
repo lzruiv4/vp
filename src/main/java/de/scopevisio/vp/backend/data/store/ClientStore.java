@@ -17,7 +17,7 @@ public class ClientStore {
     private final ClientRepository clientRepository;
 
 
-    public Client createClient(final Client client){
+    public Client createClient(final Client client) {
         return clientRepository.save(client.modelToEntity()).entityToModel();
     }
 
@@ -35,7 +35,7 @@ public class ClientStore {
     public Client updateClient(final Client newClient) {
         Optional<ClientEntity> clientEntityOptional = clientRepository.findById(newClient.getClientId());
         ClientEntity clientEntity = newClient.modelToEntity();
-        if(clientEntityOptional.isPresent()) {
+        if (clientEntityOptional.isPresent()) {
             return clientRepository.saveAndFlush(clientEntity).entityToModel();
         } else {
             throw new NoSuchElementException("Client not found");

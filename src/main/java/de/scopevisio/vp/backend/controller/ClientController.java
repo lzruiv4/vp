@@ -2,6 +2,7 @@ package de.scopevisio.vp.backend.controller;
 
 import de.scopevisio.vp.backend.data.model.Client;
 import de.scopevisio.vp.backend.service.ClientService;
+import de.scopevisio.vp.backend.service.VersicherungspraemieBerechnenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class ClientController {
 
     private final ClientService clientService;
+    private final VersicherungspraemieBerechnenService versicherungspraemieBerechnenService;
 
     @PostMapping(value = "/create")
     public ResponseEntity<Client> createClient(@RequestBody Client client) {
@@ -35,6 +37,8 @@ public class ClientController {
 
     @PutMapping("/update")
     public ResponseEntity<Client> updateClient(@RequestBody Client client) {
+
+        client.getCars().forEach(versicherungspraemieBerechnenService::berechneVersicherungspraemie);
         return new ResponseEntity<>(clientService.updateClient(client), HttpStatus.OK);
     }
 

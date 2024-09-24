@@ -27,20 +27,13 @@ public class CarController {
                 clientId
         );
 
-        versicherungspraemieBerechnenService.berechneRegionType(carToBeSave);
-
-        return new ResponseEntity<>(new Car(
-                carToBeSave.getCarId(),
-                carToBeSave.getCarType(),
-                carToBeSave.getMilesPerYear(),
-                carToBeSave.getRegionType(),
-                versicherungspraemieBerechnenService.berechneVersicherungspraemie(carToBeSave.getCarId()),
-                carToBeSave.getRegisteredPostalCode()
-        ), HttpStatus.CREATED);
+        versicherungspraemieBerechnenService.berechneVersicherungspraemie(carToBeSave);
+        return new ResponseEntity<>(carToBeSave, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Car> updateCar(@RequestBody Car car) {
+        versicherungspraemieBerechnenService.berechneVersicherungspraemie(car);
         return new ResponseEntity<>(carService.updateCar(car), HttpStatus.OK);
     }
 

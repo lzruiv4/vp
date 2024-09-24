@@ -27,9 +27,6 @@ public class CarService {
         return carStore.addCar(carType, milesPerYear, regionType, versicherungspraemie, registeredPostalCode, clientId);
     }
 
-    public Car getCarByCarId(final UUID carId) {
-        return carStore.getCarByCarId(carId);
-    }
     public List<Car> getCarsByClientId(final Long clientId) {
         return carStore.getCarsByClientId(clientId);
     }

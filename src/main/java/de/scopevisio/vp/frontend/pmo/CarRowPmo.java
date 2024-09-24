@@ -8,9 +8,9 @@ import org.linkki.core.ui.element.annotation.UITextField;
 
 public class CarRowPmo extends CarPmo {
 
-     public CarRowPmo(Car car) {
-         super(car);
-     }
+    public CarRowPmo(Car car) {
+        super(car);
+    }
 
     @UILabel(position = 10, label = "Car ID", modelAttribute = "carId")
     public void carId() {

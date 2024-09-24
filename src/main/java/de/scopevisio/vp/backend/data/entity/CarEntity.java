@@ -39,7 +39,7 @@ public class CarEntity {
     @JoinColumn(name = "clientId")
     private ClientEntity clientEntity;
 
-    public Car entityToModel(){
+    public Car entityToModel() {
         return new Car(carId, carType, milesPerYear, regionType, versicherungspraemie, registeredPostalCode);
     }
 }
