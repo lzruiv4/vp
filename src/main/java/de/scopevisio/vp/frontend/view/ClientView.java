@@ -9,7 +9,7 @@ import de.scopevisio.vp.frontend.ui.VPLayout;
 import org.linkki.framework.ui.component.Headline;
 
 @PageTitle("VP System")
-@Route(value = "/clients", layout = VPLayout.class)
+@Route(value = "clients", layout = VPLayout.class)
 public class ClientView extends VerticalLayout {
 
     private static final long serialVersionUID = 1L;
@@ -19,6 +19,5 @@ public class ClientView extends VerticalLayout {
         setSizeFull();
         ClientPage page = new ClientPage(clientService);
         add(page);
-        UI.getCurrent().navigate(ClientView.class);
     }
 }
