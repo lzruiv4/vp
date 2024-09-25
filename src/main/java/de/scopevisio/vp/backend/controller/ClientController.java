@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/clients")
 @RequiredArgsConstructor
@@ -18,10 +20,7 @@ public class ClientController {
 
     @PostMapping(value = "/create")
     public ResponseEntity<Client> createClient(@RequestBody Client client) {
-        if (client.getFirstname() == null
-                || client.getLastname() == null
-                || client.getFirstname().isEmpty()
-                || client.getLastname().isEmpty()) {
+        if (client.getFirstname() == null || client.getLastname() == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         } else {
             Client clientToBeSave = clientService.createClient(client);
@@ -32,6 +31,11 @@ public class ClientController {
     @GetMapping(value = "/{clientId}")
     public ResponseEntity<Client> getClientById(@PathVariable final Long clientId) {
         return ResponseEntity.ok(clientService.getClient(clientId));
+    }
+
+    @GetMapping(value = "/all")
+    public ResponseEntity<List<Client>> getAllClients() {
+        return ResponseEntity.ok(clientService.getAllClients());
     }
 
     @PutMapping("/update")

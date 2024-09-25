@@ -1,6 +1,5 @@
 package de.scopevisio.vp.frontend.pmo;
 
-
 import de.scopevisio.vp.backend.data.model.Car;
 import org.linkki.core.ui.element.annotation.UIComboBox;
 import org.linkki.core.ui.element.annotation.UILabel;

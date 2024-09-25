@@ -4,19 +4,21 @@ import de.scopevisio.vp.backend.data.enums.CarType;
 import de.scopevisio.vp.backend.data.enums.RegionType;
 import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.data.model.Client;
-import de.scopevisio.vp.backend.service.CarService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,8 +38,6 @@ public class VPControllerTest {
     private String carUrl;
     private Client client;
 
-    private CarService carService;
-
     @BeforeEach
     void init() {
         clientUrl = base + port + "/clients";
@@ -48,7 +48,7 @@ public class VPControllerTest {
                 "lastname",
                 "street",
                 "123",
-                "50667",
+                "12589",
                 "",
                 new ArrayList<>());
         testRestTemplate.postForEntity(clientUrl + "/create", client, Client.class);
@@ -61,7 +61,7 @@ public class VPControllerTest {
         assert clientToBeCall != null;
         assertThat(clientToBeCall.getFirstname()).isEqualTo("firstname");
         assertThat(clientToBeCall.getLastname()).isEqualTo("lastname");
-        assertThat(clientToBeCall.getCity()).isEqualTo("Köln");
+        assertThat(clientToBeCall.getCity()).isEqualTo("Berlin");
     }
 
     @Test
@@ -74,11 +74,22 @@ public class VPControllerTest {
     }
 
     @Test
+    void getAllClientsTest() {
+        ResponseEntity<List<Client>> response = testRestTemplate.exchange(
+                "/clients/all",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Client>>() {}
+        );
+        assertThat(Objects.requireNonNull(response.getBody()).size()).isEqualTo(1);
+    }
+
+    @Test
     void createClientWithoutNameTest() {
         try {
             Client clientNr2 = new Client(
-                    2L,
-                    "",
+                    null,
+                    null,
                     null,
                     "street2",
                     "123",
@@ -96,7 +107,7 @@ public class VPControllerTest {
         ResponseEntity<Client> responseEntity = testRestTemplate.getForEntity(clientUrl + "/1", Client.class);
         Client clientToBeCall = responseEntity.getBody();
         assert clientToBeCall != null;
-        assertEquals(clientToBeCall.getCity(), "Köln");
+        assertEquals(clientToBeCall.getCity(), "Berlin");
         clientToBeCall.setFirstname("qwe");
         clientToBeCall.setLastname("asf");
         clientToBeCall.setStreet("zxxxx");
