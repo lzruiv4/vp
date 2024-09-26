@@ -14,7 +14,7 @@ Erstelle eine Anwendung mit folgenden Anforderungen:
 - (Optional) erstelle eine Web-basierte Oberfläche.
 
 ## Lösung
-- Die Idee nutzt ein typisches Springboot als Backend, um kunden- und fahrzeugbezogene Informationen zu speichern.
+- Die Idee: Ein typisches Springboot wird als Backend benutzt, um kunden- und fahrzeugbezogene Informationen zu speichern.
   1. Um eine neue Kunde anzulegen, soll man den Namen, die Straße und die Postleitzahl eingeben, dann wird der entsprechende Ort automatisch durch CSV-Dokuments (`RegionService`) und der Postleitzahl ermittelt.
   2. Nach dem Erstellen eines Kunden kann ein versichertes Auto hinzugefügt werden. Gleichfalls können der Fahrzeugtyp, der Jahreskilometerstand und die Fahrzeugzulassungsadresse eingeben und dann wird Versicherungsprämie automatisch über `VersicherungspraemieBerechnenService` erhalten.
 - In diesem Projekt habe ich H2 als Datenbank verwendet. Der Vorteil liegt daran, dass es einfach zu bedienen ist und keine zusätzlichen Einstellungen erfordert. Ich habe die Speicherstrategie so geändert, damit alle Daten in `src/main/resources/db/database.mv.db` gespeichert werden.
