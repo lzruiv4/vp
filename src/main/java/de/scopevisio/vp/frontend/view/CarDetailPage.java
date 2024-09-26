@@ -55,11 +55,23 @@ public class CarDetailPage extends AbstractPage {
         );
     }
 
+    private void updateCar(Car car) {
+        CarDialog.updateCar(
+                "Update car information",
+                () -> {  // Handler
+                    carService.updateCar(car);
+                    getBindingContext().updateUi();
+                },
+                car
+        );
+    }
+
     private void getResult() {
         add(VaadinUiCreator
                 .createComponent(new CarTablePmo(
                                 () -> carService.getCarsByClientId(client.getClientId()),
-                                this::addNewCar
+                                this::addNewCar,
+                                this::updateCar
                         ), getBindingContext()
                 )
         );

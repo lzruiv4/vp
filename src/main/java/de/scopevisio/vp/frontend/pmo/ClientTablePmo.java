@@ -10,19 +10,23 @@ import org.linkki.core.ui.layout.annotation.UISection;
 import org.linkki.util.handler.Handler;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @UISection(caption = "Client List")
 public class ClientTablePmo extends SimpleTablePmo<Client, ClientRowPmo> {
 
     private final Handler addClientHandler;
+    private final Consumer<Client> updateClient;
 
     public ClientTablePmo(
             Supplier<List<? extends Client>> addClientSupplier,
-            Handler addClientHandler
+            Handler addClientHandler,
+            Consumer<Client> updateClient
     ) {
         super(addClientSupplier.get());
         this.addClientHandler = addClientHandler;
+        this.updateClient = updateClient;
     }
 
     @SectionHeader
@@ -39,7 +43,7 @@ public class ClientTablePmo extends SimpleTablePmo<Client, ClientRowPmo> {
 
     @Override
     protected ClientRowPmo createRow(Client client) {
-        return new ClientRowPmo(client);
+        return new ClientRowPmo(client, updateClient);
     }
 
     @Override

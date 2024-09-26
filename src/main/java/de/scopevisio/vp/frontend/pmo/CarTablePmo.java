@@ -11,19 +11,23 @@ import org.linkki.core.ui.layout.annotation.UISection;
 import org.linkki.util.handler.Handler;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @UISection(caption = "Client List")
 public class CarTablePmo extends SimpleTablePmo<Car, CarRowPmo> {
 
     private final Handler addCarHandler;
+    private final Consumer<Car> updateCar;
 
     public CarTablePmo(
             Supplier<List<? extends Car>> addCarSupplier,
-            Handler addCarHandler
+            Handler addCarHandler,
+            Consumer<Car> updateCar
     ) {
         super(addCarSupplier.get());
         this.addCarHandler = addCarHandler;
+        this.updateCar = updateCar;
     }
 
     @SectionHeader
@@ -40,7 +44,7 @@ public class CarTablePmo extends SimpleTablePmo<Car, CarRowPmo> {
 
     @Override
     protected CarRowPmo createRow(Car car) {
-        return new CarRowPmo(car);
+        return new CarRowPmo(car, updateCar);
     }
 
     @SectionHeader

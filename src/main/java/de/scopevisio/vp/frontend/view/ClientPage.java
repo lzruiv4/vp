@@ -42,12 +42,24 @@ public class ClientPage extends AbstractPage {
         );
     }
 
+    private void updateClient(Client client) {
+        ClientDialog.updateClient(
+                "Update Client",
+                () -> {  // Handler
+                    clientService.updateClient(client);
+                    getBindingContext().updateUi();
+                },
+                client
+        );
+    }
+
     private void getClients() {
         //updateClient();
         add(VaadinUiCreator
                 .createComponent(new ClientTablePmo(
                                 () -> clients,
-                                this::addNewClient
+                                this::addNewClient,
+                                this::updateClient
                         ), getBindingContext()
                 )
         );

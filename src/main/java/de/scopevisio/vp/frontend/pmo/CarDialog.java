@@ -13,7 +13,15 @@ public class CarDialog {
 
     public static void addNewCar(String title, Handler addCarHandler, Car car) {
         PmoBasedDialogFactory newCarDialog = new PmoBasedDialogFactory();
-        OkCancelDialog dialog = newCarDialog.newOkCancelDialog(title, addCarHandler, new CarPmo(car));
+        OkCancelDialog dialog = newCarDialog.newOkCancelDialog(title, addCarHandler, new CarPmo(car, true));
+
+        dialog.setWidth("40em");
+        dialog.open();
+    }
+
+    public static void updateCar(String title, Handler addClientHandler, Car car) {
+        PmoBasedDialogFactory newClientDialog = new PmoBasedDialogFactory();
+        OkCancelDialog dialog = newClientDialog.newOkCancelDialog(title, addClientHandler, new CarPmo(car, true));
 
         dialog.setWidth("40em");
         dialog.open();
