@@ -7,11 +7,18 @@ import org.linkki.core.pmo.ModelObject;
 import org.linkki.core.ui.element.annotation.UITextField;
 import org.linkki.core.ui.layout.annotation.UIVerticalLayout;
 
+/**
+ * Define a clientPmo as base model and bind the client model from backend.
+ * */
 @UIVerticalLayout
 @AllArgsConstructor
 public class ClientPmo {
 
     private final Client client;
+
+    /**
+     * Set whether all areas are editable, the default is false
+     * */
     private boolean isInDialog = false;
 
     @ModelObject

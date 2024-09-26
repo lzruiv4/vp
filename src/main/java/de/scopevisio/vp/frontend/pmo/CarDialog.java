@@ -5,6 +5,9 @@ import org.linkki.framework.ui.dialogs.OkCancelDialog;
 import org.linkki.framework.ui.dialogs.PmoBasedDialogFactory;
 import org.linkki.util.handler.Handler;
 
+/**
+ * Dialog, opens a dialog when adding or updating Car.
+ * */
 public class CarDialog {
 
     public CarDialog() {

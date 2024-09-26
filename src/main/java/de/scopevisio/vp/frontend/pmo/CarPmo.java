@@ -8,11 +8,18 @@ import org.linkki.core.ui.element.annotation.UIComboBox;
 import org.linkki.core.ui.element.annotation.UITextField;
 import org.linkki.core.ui.layout.annotation.UIVerticalLayout;
 
+/**
+ * Define a carPmo as base model and bind the car model from backend.
+ * */
 @UIVerticalLayout
 @AllArgsConstructor
 public class CarPmo {
 
     private final Car car;
+
+    /**
+     * Set whether all areas are editable, the default is false
+     * */
     private boolean isInDialog = false;
 
     @ModelObject
