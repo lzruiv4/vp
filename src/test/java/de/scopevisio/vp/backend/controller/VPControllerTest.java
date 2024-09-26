@@ -172,7 +172,7 @@ public class VPControllerTest {
                 CarType.LKW,
                 BigDecimal.valueOf(6000),
                 null,
-                null,
+                BigDecimal.ONE,
                 "30000");
 
         ResponseEntity<Car> carResponseEntity = testRestTemplate.postForEntity(carUrl + "/create?clientId=2", car2, Car.class);
