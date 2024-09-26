@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "e1cf8132-a07d-42ed-bad9-738aa5ba3feb",
+		"name": "vp_postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27712540"
+	},
+	"item": [
+		{
+			"name": "create a client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\" : \"Andi\",\n    \"lastname\" : \"Lin\",\n    \"street\" : \"Blabla street\",\n    \"houseNumber\" : \"55\",\n    \"postCode\" : \"50667\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/clients/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clients",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get the first client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/clients/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"carType\" : \"LKW\",\n    \"milesPerYear\" : \"1000\",\n    \"registeredPostalCode\" : \"50667\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cars/create?clientId=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cars",
+						"create"
+					],
+					"query": [
+						{
+							"key": "clientId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update a car",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"carId\": \"d1d8772c-6d1e-47ec-b0e6-22461b4eb46a\",\n    \"carType\": \"PKW\",\n    \"milesPerYear\": 1000.00,\n    \"regionType\": \"C\",\n    \"versicherungspraemie\": 8.00,\n    \"registeredPostalCode\": \"50667\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cars/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cars",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update a client",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"clientId\": 1,\n    \"firstname\": \"Andi\",\n    \"lastname\": \"Lind\",\n    \"street\": \"Blabla street\",\n    \"houseNumber\": \"55\",\n    \"postCode\": \"50667\",\n    \"city\": \"Köln\",\n    \"cars\": [\n        {\n            \"carId\": \"d1d8772c-6d1e-47ec-b0e6-22461b4eb46a\",\n            \"carType\": \"PKW\",\n            \"milesPerYear\": 1000.00,\n            \"regionType\": \"C\",\n            \"versicherungspraemie\": 0.80,\n            \"registeredPostalCode\": \"50667\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/clients/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clients",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all clients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/clients/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clients",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

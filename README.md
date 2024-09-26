@@ -1,37 +1,6 @@
 # Service zur Berechnung einer Versicherungsprämie
 
-Eine Versicherung berechnet die Versicherungsprämie auf Basis von:
-
-- Jährliche Kilometerleistung
-- Fahrzeugtyp
-- Region der Fahrzeugzulassung
-
-Für die regionale Zuordnung wird eine CSV "postcodes.csv" verwendet. Die wichtigsten Felder in der CSV sind:
-
-- REGION1 Bundesland
-- REGION3 Land
-- REGION4 Stadt/Ort
-- POSTLEITZAHL Postleitzahl
-- LOCATION Bezirk
-
-Interessenten sollen eine Anwendung zur Berechnung der Versicherungsprämie nutzen. Nutzereingaben und die berechnete Prämie sollen persistiert werden.
-Der Antragsteller soll die geschätzte Kilometerleistung, Postleitzahl der Zulassungsstelle und den Fahrzeugtyp eingeben.
-
-Zur Berechnung der Prämie wird folgende Formel verwendet:
-
-    Kilometerleistung-Faktor * Fahrzeugtyp-Faktor * Region-Faktor
-
-Der Faktor für die Kilometerleistung ist wie folgt festgelegt:
-
-- 0 bis 5.000 km: 0.5
-- 5.001 km bis 10.000 km: 1.0
-- 10.001 km bis 20.000 km: 1.5
-- ab 20.000km: 2.0
-
-Der Faktor für die Region kann anhand des Bundeslandes gewählt werden. Der Faktor für die Fahrzeugtyp kann frei definiert werden.
-
-Neben der Anwendung für Antragsteller soll eine Integration von Drittanbietern ermöglicht werden.
-Dazu soll eine HTTP-API zur Berechnung der Prämie angeboten werden.
+## Vielen Dank für diese Codingsaufgabe. Ich habe es sehr genossen. :)
 
 ## Deine Aufgabe
 
@@ -44,15 +13,20 @@ Erstelle eine Anwendung mit folgenden Anforderungen:
 - Erstelle sowohl Code als auch Dokumentation.
 - (Optional) erstelle eine Web-basierte Oberfläche.
 
-Wir legen Wert auf Einfachheit, Testbarkeit und Wartbarkeit.
-
-## Ablauf/Evaluation
-
-Wir setzen keine zeitlichen Einschränkungen. Die Umsetzung soll vielmehr als Gesprächsgrundlage dienen und du musst in der Lage sein, deine Entscheidungen zu erläutern.
-Es gibt kein Richtig oder Falsch.
-
-Die Anwendung muss bei uns lokal lauffähig sein.
-
-Abgabe ist entweder per .zip-Datei oder per GitHub-Link möglich.
-
-## Viel Erfolg!
+## Lösung
+- Die Idee nutzt ein typisches Springboot als Backend, um kunden- und fahrzeugbezogene Informationen zu speichern.
+  1. Um eine neue Kunde anzulegen, soll man den Namen, die Straße und die Postleitzahl eingeben, dann wird der entsprechende Ort automatisch durch CSV-Dokuments (`RegionService`) und der Postleitzahl ermittelt.
+  2. Nach dem Erstellen eines Kunden kann ein versichertes Auto hinzugefügt werden. Gleichfalls können der Fahrzeugtyp, der Jahreskilometerstand und die Fahrzeugzulassungsadresse eingeben und dann wird Versicherungsprämie automatisch über `VersicherungspraemieBerechnenService` erhalten.
+- In diesem Projekt habe ich H2 als Datenbank verwendet. Der Vorteil liegt daran, dass es einfach zu bedienen ist und keine zusätzlichen Einstellungen erfordert. Ich habe die Speicherstrategie so geändert, damit alle Daten in `src/main/resources/db/database.mv.db` gespeichert werden.
+- In diesem Projekt habe ich 4 Services erstellt.
+  - CarService
+  - ClientService
+  - RegionalService
+  - VersicherungspraemieBerechnenService
+- Der Backend-Test basiert auf `TestRestTemplate`. Der Frontend-Test habe ich hier nicht gemacht. Deswegen sieht man hier weniger Testabdeckungen. Aber wie gesehen, das Backend ist schon fast alles abgedeckt. ;)
+- Anbei sieht man auch ein `vp_postman.postman_collection.json`, damit man durch postman die Request testen kann.
+- Auch ein UI (`linkki`) ist dabei. Nach dem Start der App sollte diese automatisch zum Browser springen. Wenn nicht, bitte kopiert die Adresse `http://localhost:8080/clients` in deinen Browser.
+  - Eine neue Kunde kann durch `+ New Client` hinzugefügt. Hier sollen `Firstname`, `Lastname`, `street`, `House Number`, `PostCode`in einem Dialog eingegeben werden. 
+    - Tipp: Bitte aktualisiert die Seite, nachdem einer Kunde hinzugefügt ist. Dies scheint ein Bug von Linkki zu sein.
+  - Nachdem Aktualisierung bekommt man schon einen Kunden. Ganz rechts befindet sich ein `Cars` und ein `Stifticon`. Wenn man auf das Stiftsymbol klicken, kann die Kundeninformation geändert werden.
+  - Wenn man auf `cars` klicken, wird die Seite zum Cardetail weitergeleitet. Falls noch kein Car gibt, kann auch durch `+` Button ein Auto hinzufügen. Gleichfalls gibt es auch ein Stifticon, damit die Autoinformationen geändert wird.
