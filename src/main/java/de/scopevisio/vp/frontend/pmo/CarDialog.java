@@ -11,19 +11,12 @@ public class CarDialog {
 
     }
 
-    public static void addNewCar(String title, Handler addCarHandler, Car car) {
+    public static void addOrUpdateCar(String title, Handler addOrUpdateCarHandler, Car car) {
         PmoBasedDialogFactory newCarDialog = new PmoBasedDialogFactory();
-        OkCancelDialog dialog = newCarDialog.newOkCancelDialog(title, addCarHandler, new CarPmo(car, true));
+        OkCancelDialog dialog = newCarDialog.newOkCancelDialog(title, addOrUpdateCarHandler, new CarPmo(car, true));
 
         dialog.setWidth("40em");
         dialog.open();
     }
 
-    public static void updateCar(String title, Handler addClientHandler, Car car) {
-        PmoBasedDialogFactory newClientDialog = new PmoBasedDialogFactory();
-        OkCancelDialog dialog = newClientDialog.newOkCancelDialog(title, addClientHandler, new CarPmo(car, true));
-
-        dialog.setWidth("40em");
-        dialog.open();
-    }
 }

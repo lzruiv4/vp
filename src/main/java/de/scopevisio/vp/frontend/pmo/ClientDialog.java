@@ -11,20 +11,13 @@ public class ClientDialog {
 
     }
 
-    public static void addNewClient(String title, Handler addClientHandler, Client client) {
+    public static void addOrUpdateClient(String title, Handler addOrUpdateClientHandler, Client client) {
         PmoBasedDialogFactory newClientDialog = new PmoBasedDialogFactory();
         ClientPmo clientPmo = new ClientPmo(client, true);
-        OkCancelDialog dialog = newClientDialog.newOkCancelDialog(title, addClientHandler, clientPmo);
+        OkCancelDialog dialog = newClientDialog.newOkCancelDialog(title, addOrUpdateClientHandler, clientPmo);
 
         dialog.setWidth("40em");
         dialog.open();
     }
 
-    public static void updateClient(String title, Handler addClientHandler, Client client) {
-        PmoBasedDialogFactory newClientDialog = new PmoBasedDialogFactory();
-        OkCancelDialog dialog = newClientDialog.newOkCancelDialog(title, addClientHandler, new ClientPmo(client, true));
-
-        dialog.setWidth("40em");
-        dialog.open();
-    }
 }

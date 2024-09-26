@@ -39,7 +39,7 @@ public class CarDetailPage extends AbstractPage {
 
     private void addNewCar() {
         var newCar = new Car();
-        CarDialog.addNewCar(
+        CarDialog.addOrUpdateCar(
                 "Neu Car",
                 () -> {  // Handler
                     carService.addCar(
@@ -56,7 +56,7 @@ public class CarDetailPage extends AbstractPage {
     }
 
     private void updateCar(Car car) {
-        CarDialog.updateCar(
+        CarDialog.addOrUpdateCar(
                 "Update car information",
                 () -> {  // Handler
                     carService.updateCar(car);

@@ -32,7 +32,7 @@ public class ClientPage extends AbstractPage {
 
     private void addNewClient() {
         var newClient = new Client();
-        ClientDialog.addNewClient(
+        ClientDialog.addOrUpdateClient(
                 "Neu Client",
                 () -> {  // Handler
                     clientService.createClient(newClient);
@@ -43,7 +43,7 @@ public class ClientPage extends AbstractPage {
     }
 
     private void updateClient(Client client) {
-        ClientDialog.updateClient(
+        ClientDialog.addOrUpdateClient(
                 "Update Client",
                 () -> {  // Handler
                     clientService.updateClient(client);
