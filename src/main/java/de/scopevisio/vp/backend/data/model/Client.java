@@ -23,6 +23,9 @@ public class Client {
     private String city;
     private List<Car> cars;
 
+    /**
+     * Convert model to entity
+     */
     public ClientEntity modelToEntity() {
         return new ClientEntity(
                 clientId,

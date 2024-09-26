@@ -39,6 +39,9 @@ public class CarEntity {
     @JoinColumn(name = "clientId")
     private ClientEntity clientEntity;
 
+    /**
+     * Convert entity to model
+     */
     public Car entityToModel() {
         return new Car(carId, carType, milesPerYear, regionType, versicherungspraemie, registeredPostalCode);
     }

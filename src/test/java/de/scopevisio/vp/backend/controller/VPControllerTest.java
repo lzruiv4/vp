@@ -33,13 +33,13 @@ public class VPControllerTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-    private String base = "http://localhost:";
     private String clientUrl;
     private String carUrl;
     private Client client;
 
     @BeforeEach
     void init() {
+        String base = "http://localhost:";
         clientUrl = base + port + "/clients";
         carUrl = base + port + "/cars";
         client = new Client(
@@ -79,27 +79,25 @@ public class VPControllerTest {
                 "/clients/all",
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Client>>() {}
+                new ParameterizedTypeReference<>() {
+                }
         );
         assertThat(Objects.requireNonNull(response.getBody()).size()).isEqualTo(1);
     }
 
     @Test
     void createClientWithoutNameTest() {
-        try {
-            Client clientNr2 = new Client(
-                    null,
-                    null,
-                    null,
-                    "street2",
-                    "123",
-                    "99999",
-                    "",
-                    new ArrayList<>());
-            testRestTemplate.postForEntity(clientUrl + "/create", clientNr2, Client.class);
-        } catch (IllegalArgumentException e) {
-            assertEquals(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+        Client clientNr2 = new Client(
+                null,
+                null,
+                null,
+                "street2",
+                "123",
+                "99999",
+                "",
+                new ArrayList<>());
+        var response = testRestTemplate.postForEntity(clientUrl + "/create", clientNr2, Client.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
     }
 
     @Test
@@ -203,9 +201,9 @@ public class VPControllerTest {
         assertThat(Objects.requireNonNull(newClient.getBody()).getCars().get(0).getRegionType()).isEqualTo(RegionType.E);
 
         car2.setMilesPerYear(BigDecimal.valueOf(-1));
-        try{
+        try {
             testRestTemplate.put(carUrl + "/update", car2);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             assertEquals(e.getMessage(), "Something is going wrong, please check your input");
         }
     }

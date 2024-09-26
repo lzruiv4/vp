@@ -8,6 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * This controller handles all operations related to managing Car.
+ * It provides endpoints for creating and updating car data.
+ */
 @RestController
 @RequestMapping("/cars")
 @RequiredArgsConstructor
@@ -16,6 +20,12 @@ public class CarController {
     private final CarService carService;
     private final VersicherungspraemieBerechnenService versicherungspraemieBerechnenService;
 
+    /**
+     * Create a new car.
+     *
+     * @param car with all information.
+     * @return a ResponseEntity containing car object.
+     */
     @PostMapping(value = "/create")
     public ResponseEntity<Car> addCar(@RequestParam Long clientId, @RequestBody Car car) {
         Car carToBeSave = carService.addCar(
@@ -31,6 +41,12 @@ public class CarController {
         return new ResponseEntity<>(carToBeSave, HttpStatus.CREATED);
     }
 
+    /**
+     * Update a car.
+     *
+     * @param car with all new information.
+     * @return a ResponseEntity containing car object.
+     */
     @PutMapping("/update")
     public ResponseEntity<Car> updateCar(@RequestBody Car car) {
         versicherungspraemieBerechnenService.berechneVersicherungspraemie(car);

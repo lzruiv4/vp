@@ -9,6 +9,9 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public enum CarType {
 
+    /**
+     * enum with fahrzeugTypeFaktor
+     */
     LKW(BigDecimal.TEN),
     PKW(BigDecimal.ONE);
 

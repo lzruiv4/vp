@@ -21,6 +21,13 @@ public class RegionalService {
         this.regions = readRegionalFromCsv("src/main/resources/static/postcodes.csv");
     }
 
+    /**
+     * Get information from csv file.
+     *
+     * @param path, where the csv file is.
+     * @return RegionalsFromCSV as list
+     * @throws IllegalArgumentException if no csv file will be read.
+     */
     public List<RegionalFromCSV> readRegionalFromCsv(String path) {
         List<RegionalFromCSV> regionalFromCSVS = new ArrayList<>();
         try (CSVReader reader = new CSVReader(new FileReader(path))) {
@@ -29,15 +36,20 @@ public class RegionalService {
 
             List<String[]> rows = reader.readAll();
             for (String[] row : rows) {
-                regionalFromCSVS.add(new RegionalFromCSV(row[2], row[0], row[7], row[6], row[8]));
+//                regionalFromCSVS.add(new RegionalFromCSV(row[2], row[0], row[7], row[6], row[8]));
+                regionalFromCSVS.add(new RegionalFromCSV(row[7], row[6]));
             }
-
         } catch (IOException | CsvException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException("Read csv wrong");
         }
         return regionalFromCSVS;
     }
 
+    /**
+     * Get postal code and city as Map.
+     *
+     * @return a map, which postal code as key and city as value.
+     */
     public Map<String, List<String>> getPlzOrts() {
         return regions.stream()
                 .collect(Collectors.groupingBy(

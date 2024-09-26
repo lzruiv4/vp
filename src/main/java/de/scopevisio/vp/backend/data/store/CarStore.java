@@ -21,6 +21,18 @@ public class CarStore {
 
     private final ClientRepository clientRepository;
 
+    /**
+     * Add a new car.
+     *
+     * @param carType              is a car type. PKW or LKW.
+     * @param milesPerYear         is the average mileage per year.
+     * @param regionType           is determined by the car's registration location.
+     * @param versicherungspraemie is calculated based on the car's KilometerleistungFaktor, FahrzeugtypFaktor and RegionFaktor.
+     * @param registeredPostalCode is the postal code, where the car registered is.
+     * @param clientId             is the client's id.
+     * @return car
+     * @throws NoSuchElementException if client not found
+     */
     public Car addCar(final CarType carType,
                       final BigDecimal milesPerYear,
                       final RegionType regionType,
@@ -49,6 +61,12 @@ public class CarStore {
         return carRepository.save(carEntityToBeSave).entityToModel();
     }
 
+    /**
+     * Find all cars by client id.
+     *
+     * @param clientId is the client's id.
+     * @return car as list
+     */
     public List<Car> getCarsByClientId(final Long clientId) {
         return carRepository.findAll().stream()
                 .filter(carEntity -> Objects.equals(carEntity.getClientEntity().getClientId(), clientId))
@@ -56,6 +74,13 @@ public class CarStore {
                 .toList();
     }
 
+    /**
+     * Update a car.
+     *
+     * @param newCar is a car with all new information.
+     * @return car, which up to date
+     * @throws NoSuchElementException if car not found
+     */
     public Car updateCar(final Car newCar) {
         Optional<CarEntity> carEntityOptional = carRepository.findById(newCar.getCarId());
         if (carEntityOptional.isEmpty()) throw new NoSuchElementException("Car not found");
@@ -63,6 +88,13 @@ public class CarStore {
         return carRepository.saveAndFlush(carEntity).entityToModel();
     }
 
+    /**
+     * Update the information with new car information.
+     *
+     * @param oldCarEntity is an old carEntity from database.
+     * @param newCarEntity is a new carEntity.
+     * @return carEntity
+     */
     private CarEntity mapTheNewCar(CarEntity oldCarEntity, CarEntity newCarEntity) {
         if (oldCarEntity.getCarType() != newCarEntity.getCarType() && newCarEntity.getCarType() != null)
             oldCarEntity.setCarType(newCarEntity.getCarType());

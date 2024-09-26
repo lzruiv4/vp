@@ -17,6 +17,11 @@ public class VersicherungspraemieBerechnenService {
 
     private final CarStore carStore;
 
+    /**
+     * Calculate the car versicherungspraemie.
+     *
+     * @param car , which to be calculated.
+     */
     public void berechneVersicherungspraemie(final Car car) {
         BigDecimal versicherungspraemie = berechneKilometerleistungFaktor(car.getMilesPerYear())
                 .multiply(berechneFahrzeugTypFaktor(car.getCarType()))
@@ -26,6 +31,17 @@ public class VersicherungspraemieBerechnenService {
         carStore.updateCar(car);
     }
 
+    /**
+     * Calculate KilometerleistungFaktor.
+     * If milesPerYear is between 0 and 5000, it will return 0.5
+     * If milesPerYear is between 5001 and 10000, it will return 1.0
+     * If milesPerYear is between 10001 and 20000, it will return 1.5
+     * If milesPerYear is bigger than 20000, it will return 2.0
+     *
+     * @param milesPerYear is the average mileage per year.
+     * @return KilometerleistungFaktor
+     * @throws IllegalArgumentException if something wrong, maybe postal code is wrong.
+     */
     public BigDecimal berechneKilometerleistungFaktor(final BigDecimal milesPerYear) {
         if (milesPerYear.compareTo(BigDecimal.valueOf(0)) >= 0 &&
                 milesPerYear.compareTo(BigDecimal.valueOf(5000)) <= 0) {
@@ -43,10 +59,26 @@ public class VersicherungspraemieBerechnenService {
         }
     }
 
+    /**
+     * Calculate the FahrzeugTypFaktor, based on car type.
+     *
+     * @param carType is a car type. CarType.LKW or CarType.PKW
+     * @return FahrzeugTypFaktor
+     */
     public BigDecimal berechneFahrzeugTypFaktor(final CarType carType) {
         return carType.equals(CarType.LKW) ? CarType.LKW.getFahrzeugTypeFaktor() : CarType.PKW.getFahrzeugTypeFaktor();
     }
 
+    /**
+     * Calculate RegionType, based on postal code.
+     * If postal code is between 00000 and 19999, it will return ARegion.
+     * If postal code is between 20000 and 39999, it will return BRegion.
+     * If postal code is between 40000 and 59999, it will return CRegion.
+     * If postal code is between 60000 and 79999, it will return DRegion.
+     * If postal code is between 80000 and 99999, it will return ERegion.
+     *
+     * @param car, which to be calculated
+     */
     public void berechneRegionType(final Car car) {
         RegionStrategy regionStrategy;
         if (car.getRegisteredPostalCode().compareTo("00000") >= 0 && car.getRegisteredPostalCode().compareTo("19999") <= 0) {
@@ -64,6 +96,12 @@ public class VersicherungspraemieBerechnenService {
         carStore.updateCar(car);
     }
 
+    /**
+     * Calculate the RegionFaktor, based on region type.
+     *
+     * @param car is the car
+     * @return RegionFaktor
+     */
     public BigDecimal berechneRegionFaktor(final Car car) {
         berechneRegionType(car);
         return car.getRegionType().getRegionFaktor();

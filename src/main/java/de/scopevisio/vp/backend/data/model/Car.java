@@ -24,6 +24,9 @@ public class Car {
     private BigDecimal versicherungspraemie;
     private String registeredPostalCode;
 
+    /**
+     * Convert model to entity
+     */
     public CarEntity modelToEntity() {
         return new CarEntity(
                 carId,

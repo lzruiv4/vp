@@ -9,6 +9,9 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public enum KilometerleistungFaktorType {
 
+    /**
+     * enum with kilometerleistungFaktor
+     */
     HALF(BigDecimal.valueOf(0.5)),
     ONE(BigDecimal.ONE),
     ONEANDAHALF(BigDecimal.valueOf(1.5)),
