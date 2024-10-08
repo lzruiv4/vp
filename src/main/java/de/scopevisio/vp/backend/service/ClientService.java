@@ -3,18 +3,23 @@ package de.scopevisio.vp.backend.service;
 import de.scopevisio.vp.backend.data.model.Client;
 import de.scopevisio.vp.backend.data.store.CarStore;
 import de.scopevisio.vp.backend.data.store.ClientStore;
-import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ClientService {
 
-    private final ClientStore clientStore;
-    private final CarStore carStore;
-    private final RegionalService regionalService;
+    @Autowired
+    private ClientStore clientStore;
+
+    @Autowired
+    private CarStore carStore;
+
+    @Autowired
+    private RegionalService regionalService;
 
     /**
      * Add a new client. Automatically get the city based on the specified postal code.

@@ -5,17 +5,18 @@ import de.scopevisio.vp.backend.data.enums.KilometerleistungFaktorType;
 import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.data.model.regionstrategy.*;
 import de.scopevisio.vp.backend.data.store.CarStore;
-import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Service
-@RequiredArgsConstructor
 public class VersicherungspraemieBerechnenService {
 
-    private final CarStore carStore;
+    @Autowired
+    private CarStore carStore;
 
     /**
      * Calculate the car versicherungspraemie.

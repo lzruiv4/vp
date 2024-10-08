@@ -3,7 +3,8 @@ package de.scopevisio.vp.backend.data.store;
 import de.scopevisio.vp.backend.data.entity.ClientEntity;
 import de.scopevisio.vp.backend.data.model.Client;
 import de.scopevisio.vp.backend.data.repository.ClientRepository;
-import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,10 +13,10 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Component
-@RequiredArgsConstructor
 public class ClientStore {
 
-    private final ClientRepository clientRepository;
+    @Autowired
+    private ClientRepository clientRepository;
 
     /**
      * Add a new client.
@@ -61,7 +62,7 @@ public class ClientStore {
         Optional<ClientEntity> clientEntityOptional = clientRepository.findById(newClient.getClientId());
         if (clientEntityOptional.isPresent()) {
             return clientRepository.saveAndFlush(
-                            mapTheNewClient(clientEntityOptional.get(), newClient.modelToEntity()))
+                    mapTheNewClient(clientEntityOptional.get(), newClient.modelToEntity()))
                     .entityToModel();
         } else {
             throw new NoSuchElementException("Client not found");
@@ -88,7 +89,8 @@ public class ClientStore {
             oldClient.setStreet(newClient.getStreet());
         }
 
-        if (!Objects.equals(oldClient.getHouseNumber(), newClient.getHouseNumber()) && newClient.getHouseNumber() != null) {
+        if (!Objects.equals(oldClient.getHouseNumber(), newClient.getHouseNumber())
+                && newClient.getHouseNumber() != null) {
             oldClient.setHouseNumber(newClient.getHouseNumber());
         }
 

@@ -7,19 +7,21 @@ import de.scopevisio.vp.backend.data.enums.RegionType;
 import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.data.repository.CarRepository;
 import de.scopevisio.vp.backend.data.repository.ClientRepository;
-import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.*;
 
 @Component
-@RequiredArgsConstructor
 public class CarStore {
 
-    private final CarRepository carRepository;
+    @Autowired
+    private CarRepository carRepository;
 
-    private final ClientRepository clientRepository;
+    @Autowired
+    private ClientRepository clientRepository;
 
     /**
      * Add a new car.
@@ -27,19 +29,20 @@ public class CarStore {
      * @param carType              is a car type. PKW or LKW.
      * @param milesPerYear         is the average mileage per year.
      * @param regionType           is determined by the car's registration location.
-     * @param versicherungspraemie is calculated based on the car's KilometerleistungFaktor, FahrzeugtypFaktor and RegionFaktor.
+     * @param versicherungspraemie is calculated based on the car's
+     *                             KilometerleistungFaktor, FahrzeugtypFaktor and
+     *                             RegionFaktor.
      * @param registeredPostalCode is the postal code, where the car registered is.
      * @param clientId             is the client's id.
      * @return car
      * @throws NoSuchElementException if client not found
      */
     public Car addCar(final CarType carType,
-                      final BigDecimal milesPerYear,
-                      final RegionType regionType,
-                      final BigDecimal versicherungspraemie,
-                      final String registeredPostalCode,
-                      final Long clientId
-    ) {
+            final BigDecimal milesPerYear,
+            final RegionType regionType,
+            final BigDecimal versicherungspraemie,
+            final String registeredPostalCode,
+            final Long clientId) {
         CarEntity carEntityToBeSave = new CarEntity();
         carEntityToBeSave.setCarType(carType);
         carEntityToBeSave.setMilesPerYear(milesPerYear);
@@ -55,8 +58,7 @@ public class CarStore {
                 carEntityToBeSave::setClientEntity,
                 () -> {
                     throw new NoSuchElementException("Client not found");
-                }
-        );
+                });
 
         return carRepository.save(carEntityToBeSave).entityToModel();
     }
@@ -83,7 +85,8 @@ public class CarStore {
      */
     public Car updateCar(final Car newCar) {
         Optional<CarEntity> carEntityOptional = carRepository.findById(newCar.getCarId());
-        if (carEntityOptional.isEmpty()) throw new NoSuchElementException("Car not found");
+        if (carEntityOptional.isEmpty())
+            throw new NoSuchElementException("Car not found");
         CarEntity carEntity = mapTheNewCar(carEntityOptional.get(), newCar.modelToEntity());
         return carRepository.saveAndFlush(carEntity).entityToModel();
     }

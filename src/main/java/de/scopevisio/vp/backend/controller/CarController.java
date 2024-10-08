@@ -1,12 +1,19 @@
 package de.scopevisio.vp.backend.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.service.CarService;
 import de.scopevisio.vp.backend.service.VersicherungspraemieBerechnenService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 /**
  * This controller handles all operations related to managing Car.
@@ -15,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/cars")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class CarController {
 
     private final CarService carService;

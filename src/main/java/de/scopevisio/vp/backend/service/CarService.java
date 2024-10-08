@@ -4,17 +4,18 @@ import de.scopevisio.vp.backend.data.enums.CarType;
 import de.scopevisio.vp.backend.data.enums.RegionType;
 import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.data.store.CarStore;
-import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class CarService {
 
-    private final CarStore carStore;
+    @Autowired
+    private CarStore carStore;
 
     /**
      * Add a new car.
