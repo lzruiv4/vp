@@ -3,6 +3,8 @@ name: vp_ci
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
   build-job:       # This job runs in the build stage, which runs first.
