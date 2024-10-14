@@ -21,4 +21,4 @@ jobs:
         uses: stCarolas/setup-maven@v5
 
       - name: clean up
-        run: ./mvn clean
+        run: mvn clean
