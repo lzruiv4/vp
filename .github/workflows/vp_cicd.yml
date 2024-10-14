@@ -8,8 +8,7 @@ on:
 
 jobs:
   build-job:       # This job runs in the build stage, which runs first.
-    runs-on: ubuntu
-
+    runs-on: self-hosted
     steps:
       - name: Set up JDK
         uses: actions/setup-java@v4.4.0
