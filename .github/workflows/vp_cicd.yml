@@ -10,10 +10,10 @@ jobs:
   build-job:       # This job runs in the build stage, which runs first.
     runs-on: self-hosted
     steps:
-      - name: Set up JDK
-        uses: actions/setup-java@v4.4.0
-        with:
-          java-version: "17"
+    #  - name: Set up JDK
+     #   uses: actions/setup-java@v4.4.0
+      #  with:
+       #   java-version: "17"
 
       - name: Build with Maven
         run: mvn clean
