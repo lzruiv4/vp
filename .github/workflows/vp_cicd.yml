@@ -16,7 +16,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4.4.0
         with:
-          distribution: 'zulu'
+          distribution: 'zl'
           java-version: '17'
           
       - name: Setup Maven
