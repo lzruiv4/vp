@@ -15,5 +15,8 @@ jobs:
       #  with:
        #   java-version: "17"
 
+      - name: To Project
+        run: cd .. && cd /home/zraylam/Desktop/builds/t3_BSRFk-/0/lam-ag/vp
+        
       - name: Build with Maven
         run: mvn clean
