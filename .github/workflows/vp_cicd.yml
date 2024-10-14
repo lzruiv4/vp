@@ -10,9 +10,11 @@ jobs:
   build-job:    
     runs-on: ubuntu-latest
     steps:
-        
+      - name: Checkout code
+        uses: actions/upload-artifact@v4
+          
       - name: Set up JDK
-        uses: actions/setup-java@v4.4.0
+        uses: actions/setup-java@v4.4.3
         with:
           distribution: 'zulu'
           java-version: '17'
