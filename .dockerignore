@@ -1,0 +1,10 @@
+# Ignore Maven/Gradle build directories
+# target/
+  build/
+
+# Ignore IDE settings
+.idea/
+*.iml
+*.log
+.vscode/
+*.class
