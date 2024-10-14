@@ -7,16 +7,17 @@ on:
     branches: [master]
 
 jobs:
-  build-job:       # This job runs in the build stage, which runs first.
-    runs-on: self-hosted
+  build-job:    
+    runs-on: ubuntu-latest
     steps:
-    #  - name: Set up JDK
-     #   uses: actions/setup-java@v4.4.0
-      #  with:
-       #   java-version: "17"
-
-      - name: To Project
-        run: cd .. && cd /home/zraylam/Desktop/builds/t3_BSRFk-/0/lam-ag/vp
         
-      - name: Build with Maven
-        run: mvn clean
+      - name: Set up JDK
+        uses: actions/setup-java@v4.4.0
+        with:
+          java-version: "17"
+          
+      - name: Setup Maven
+        uses: stCarolas/setup-maven@v5
+
+      - name: clean up
+        run: ./mvn clean
