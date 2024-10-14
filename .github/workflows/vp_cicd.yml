@@ -16,11 +16,11 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4.4.0
         with:
-          distribution: 'zl'
+          distribution: 'zulu'
           java-version: '17'
           
       - name: Setup Maven
         uses: stCarolas/setup-maven@v5
 
       - name: clean up
-        run: mvn clean
+        run: mvn clean install
