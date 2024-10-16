@@ -27,7 +27,7 @@ jobs:
         run: mvn clean install
       
       - name: Break
-        run: sleep 30
+        run: sleep 20
 
       - name: Run test
         run: mvn test
