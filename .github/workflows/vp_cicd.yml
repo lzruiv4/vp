@@ -20,7 +20,7 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
           
-      - name: Setup Maven
+      - name: Setup maven
         uses: stCarolas/setup-maven@v5
 
       - name: Build project
