@@ -29,5 +29,8 @@ jobs:
       - name: Break
         run: sleep 20
 
+  run-test-job:
+    runs-on: ubuntu-latest
+    steps:
       - name: Run test
         run: mvn test
