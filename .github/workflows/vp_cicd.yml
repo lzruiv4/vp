@@ -32,5 +32,8 @@ jobs:
   run-test-job:
     runs-on: ubuntu-latest
     steps:
+      - name: Setup maven
+        uses: stCarolas/setup-maven@v5
+        
       - name: Run test
         run: mvn test
