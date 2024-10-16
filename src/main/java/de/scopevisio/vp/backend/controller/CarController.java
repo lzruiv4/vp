@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/cars")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+// @CrossOrigin(origins = "http://localhost:3000")
 public class CarController {
 
     private final CarService carService;
@@ -42,8 +42,7 @@ public class CarController {
                 car.getRegionType(),
                 car.getVersicherungspraemie(),
                 car.getRegisteredPostalCode(),
-                clientId
-        );
+                clientId);
 
         versicherungspraemieBerechnenService.berechneVersicherungspraemie(carToBeSave);
         return new ResponseEntity<>(carToBeSave, HttpStatus.CREATED);
