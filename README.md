@@ -1,19 +1,4 @@
 # Service zur Berechnung einer Versicherungsprämie
-
-## Vielen Dank für diese Codingsaufgabe. Ich habe es sehr genossen. :)
-
-## Deine Aufgabe
-
-Erstelle eine Anwendung mit folgenden Anforderungen:
-
-- Einträge werden in einer Datenbank gespeichert. Welche würdest du nutzen? Begründe deine Entscheidung.
-- Erstelle die notwendingen Services, mindestens zwei! Entscheide, wo die Services anhand der fachlichen Domäne und Anforderungen aufgeteilt werden.
-- Verwende ein Test-Framework und erläutere dein Konzept zur Wahrung der Softwarequalität.
-- Wie erfolgt die Kommunikation zwischen den Services?
-- Erstelle sowohl Code als auch Dokumentation.
-- (Optional) erstelle eine Web-basierte Oberfläche.
-
-## Lösung
 - Die Idee: Ein typisches Springboot wird als Backend benutzt, um kunden- und fahrzeugbezogene Informationen zu speichern.
   1. Um eine neue Kunde anzulegen, soll man den Namen, die Straße und die Postleitzahl eingeben, dann wird der entsprechende Ort automatisch durch CSV-Dokuments (`RegionService`) und der Postleitzahl ermittelt.
   2. Nach dem Erstellen eines Kunden kann ein versichertes Auto hinzugefügt werden. Gleichfalls können der Fahrzeugtyp, der Jahreskilometerstand und die Fahrzeugzulassungsadresse eingeben und dann wird Versicherungsprämie automatisch über `VersicherungspraemieBerechnenService` erhalten.
