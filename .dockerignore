@@ -1,6 +1,6 @@
 # Ignore Maven/Gradle build directories
 # target/
-  build/
+build/
 
 # Ignore IDE settings
 .idea/
