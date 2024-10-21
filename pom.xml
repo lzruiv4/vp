@@ -105,13 +105,14 @@
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
                 <version>24.4.4</version>
-                <!-- <executions>
+                <executions>
                     <execution>
                         <goals>
                             <goal>prepare-frontend</goal>
+                            <goal>build-frontend</goal>
                         </goals>
                     </execution>
-                </executions> -->
+                </executions>
             </plugin>
         </plugins>
     </build>

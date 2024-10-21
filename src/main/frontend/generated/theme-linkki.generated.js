@@ -4,6 +4,7 @@ import './theme-linkki.components.generated.js';
 let needsReloadOnChanges = false;
 import { utility } from '@vaadin/vaadin-lumo-styles/utility.js';
 import { badge } from '@vaadin/vaadin-lumo-styles/badge.js';
+import stylesCss from 'themes/linkki/styles.css?inline';
 
   let themeRemovers = new WeakMap();
   let targets = [];
@@ -13,7 +14,8 @@ import { badge } from '@vaadin/vaadin-lumo-styles/badge.js';
     if (target !== document) {
       removers.push(injectGlobalCss(utility.cssText, '', target, true));
 removers.push(injectGlobalCss(badge.cssText, '', target, true));
-
+removers.push(injectGlobalCss(stylesCss.toString(), '', target));
+    
     }
     
     
