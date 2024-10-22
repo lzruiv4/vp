@@ -33,7 +33,7 @@ jobs:
         run: mvn test
 
   package_into_docker_image_job:
-    runs-on: ubuntu-lastest
+    runs-on: vp
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.1
