@@ -82,13 +82,17 @@ public class VersicherungspraemieBerechnenService {
      */
     public void berechneRegionType(final Car car) {
         RegionStrategy regionStrategy;
-        if (car.getRegisteredPostalCode().compareTo("00000") >= 0 && car.getRegisteredPostalCode().compareTo("19999") <= 0) {
+        if (car.getRegisteredPostalCode().compareTo("00000") >= 0 
+        && car.getRegisteredPostalCode().compareTo("19999") <= 0) {
             regionStrategy = new ARegion();
-        } else if (car.getRegisteredPostalCode().compareTo("20000") >= 0 && car.getRegisteredPostalCode().compareTo("39999") <= 0) {
+        } else if (car.getRegisteredPostalCode().compareTo("20000") >= 0 
+                && car.getRegisteredPostalCode().compareTo("39999") <= 0) {
             regionStrategy = new BRegion();
-        } else if (car.getRegisteredPostalCode().compareTo("40000") >= 0 && car.getRegisteredPostalCode().compareTo("59999") <= 0) {
+        } else if (car.getRegisteredPostalCode().compareTo("40000") >= 0 
+                && car.getRegisteredPostalCode().compareTo("59999") <= 0) {
             regionStrategy = new CRegion();
-        } else if (car.getRegisteredPostalCode().compareTo("60000") >= 0 && car.getRegisteredPostalCode().compareTo("79999") <= 0) {
+        } else if (car.getRegisteredPostalCode().compareTo("60000") >= 0 
+                && car.getRegisteredPostalCode().compareTo("79999") <= 0) {
             regionStrategy = new DRegion();
         } else {
             regionStrategy = new ERegion();
