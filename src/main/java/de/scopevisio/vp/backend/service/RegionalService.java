@@ -3,6 +3,7 @@ package de.scopevisio.vp.backend.service;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import de.scopevisio.vp.backend.data.model.RegionalFromCSV;
+
 import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
@@ -49,11 +50,12 @@ public class RegionalService {
      *
      * @return a map, which postal code as key and city as value.
      */
-    public Map<String, List<String>> getPlzOrts() {
+    public Map<String, String> getPlzOrts() {
         return regions.stream()
-                .collect(Collectors.groupingBy(
-                        RegionalFromCSV::getPostleitzahl,
-                        Collectors.mapping(RegionalFromCSV::getOrt, Collectors.toList()))
-                );
+                .collect(Collectors.toMap(
+                    RegionalFromCSV::getPostleitzahl,
+                    RegionalFromCSV::getOrt,
+                    (old, neu) -> old
+                ));
     }
 }

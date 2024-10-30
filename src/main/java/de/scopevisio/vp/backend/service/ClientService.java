@@ -38,12 +38,10 @@ public class ClientService {
      * @param client is a client.
      */
     public void automaticSetCity(final Client client) {
-        List<String> orts = regionalService.getPlzOrts().get(client.getPostCode());
         if (!regionalService.getPlzOrts().containsKey(client.getPostCode())) {
             client.setCity("");
-        }
-        if (orts != null) {
-            client.setCity(orts.get(0));
+        } else {
+            client.setCity(regionalService.getPlzOrts().get(client.getPostCode()));
         }
     }
 
