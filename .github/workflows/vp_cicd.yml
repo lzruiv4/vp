@@ -23,7 +23,7 @@ jobs:
         uses: stCarolas/setup-maven@v5
 
       - name: Clean project
-        run: mvn clean
+        run: mvn clean install
 
       - name: Break
         run: sleep 10
