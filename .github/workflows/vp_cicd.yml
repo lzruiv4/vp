@@ -7,20 +7,20 @@ on:
 
 jobs:
   checkout_build_test_job:
-    runs-on: ubuntu-latest
-    # runs-on: vpmacos
+    # runs-on: ubuntu-latest
+    runs-on: vpmacos
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.1
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4.4.0
-        with:
-          distribution: "zulu"
-          java-version: "17"
+      # - name: Set up JDK 17
+      #   uses: actions/setup-java@v4.4.0
+      #   with:
+      #     distribution: "zulu"
+      #     java-version: "17"
 
-      - name: Setup maven
-        uses: stCarolas/setup-maven@v5
+      # - name: Setup maven
+      #   uses: stCarolas/setup-maven@v5
 
       - name: Clean project
         run: mvn clean install
