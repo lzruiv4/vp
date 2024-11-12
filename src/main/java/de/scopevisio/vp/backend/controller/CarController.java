@@ -34,14 +34,7 @@ public class CarController {
      */
     @PostMapping(value = "/create")
     public ResponseEntity<Car> addCar(@RequestParam Long clientId, @RequestBody Car car) {
-        Car carToBeSave = carService.addCar(
-                car.getCarType(),
-                car.getMilesPerYear(),
-                car.getRegionType(),
-                car.getVersicherungspraemie(),
-                car.getRegisteredPostalCode(),
-                clientId);
-
+        Car carToBeSave = carService.addCar(car, clientId);
         versicherungspraemieBerechnenService.berechneVersicherungspraemie(carToBeSave);
         return new ResponseEntity<>(carToBeSave, HttpStatus.CREATED);
     }

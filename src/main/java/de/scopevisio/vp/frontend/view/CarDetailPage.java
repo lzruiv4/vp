@@ -43,11 +43,7 @@ public class CarDetailPage extends AbstractPage {
                 "Neu Car",
                 () -> {  // Handler
                     carService.addCar(
-                            newCar.getCarType(),
-                            newCar.getMilesPerYear(),
-                            newCar.getRegionType(),
-                            newCar.getVersicherungspraemie(),
-                            newCar.getRegisteredPostalCode(),
+                            newCar,
                             client.getClientId());
                     getBindingContext().updateUi();
                 },

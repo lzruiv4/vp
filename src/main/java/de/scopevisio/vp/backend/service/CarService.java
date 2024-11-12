@@ -1,14 +1,11 @@
 package de.scopevisio.vp.backend.service;
 
-import de.scopevisio.vp.backend.data.enums.CarType;
-import de.scopevisio.vp.backend.data.enums.RegionType;
 import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.data.store.CarStore;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -20,22 +17,12 @@ public class CarService {
     /**
      * Add a new car.
      *
-     * @param carType              is a car type. PKW or LKW.
-     * @param milesPerYear         is the average mileage per year.
-     * @param regionType           is determined by the car's registration location.
-     * @param versicherungspraemie is calculated based on the car's KilometerleistungFaktor, FahrzeugtypFaktor and RegionFaktor.
-     * @param registeredPostalCode is the postal code, where the car registered is.
+     * @param car                  is the new car
      * @param clientId             is the client's id.
      * @return car
      */
-    public Car addCar(final CarType carType,
-                      final BigDecimal milesPerYear,
-                      final RegionType regionType,
-                      final BigDecimal versicherungspraemie,
-                      final String registeredPostalCode,
-                      final Long clientId
-    ) {
-        return carStore.addCar(carType, milesPerYear, regionType, versicherungspraemie, registeredPostalCode, clientId);
+    public Car addCar(final Car car, final Long clientId) {
+        return carStore.addCar(car, clientId);
     }
 
     /**

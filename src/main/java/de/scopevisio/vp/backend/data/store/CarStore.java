@@ -2,8 +2,6 @@ package de.scopevisio.vp.backend.data.store;
 
 import de.scopevisio.vp.backend.data.entity.CarEntity;
 import de.scopevisio.vp.backend.data.entity.ClientEntity;
-import de.scopevisio.vp.backend.data.enums.CarType;
-import de.scopevisio.vp.backend.data.enums.RegionType;
 import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.data.repository.CarRepository;
 import de.scopevisio.vp.backend.data.repository.ClientRepository;
@@ -11,7 +9,6 @@ import de.scopevisio.vp.backend.data.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 @Component
@@ -26,32 +23,13 @@ public class CarStore {
     /**
      * Add a new car.
      *
-     * @param carType              is a car type. PKW or LKW.
-     * @param milesPerYear         is the average mileage per year.
-     * @param regionType           is determined by the car's registration location.
-     * @param versicherungspraemie is calculated based on the car's
-     *                             KilometerleistungFaktor, FahrzeugtypFaktor and
-     *                             RegionFaktor.
-     * @param registeredPostalCode is the postal code, where the car registered is.
+     * @param car
      * @param clientId             is the client's id.
      * @return car
      * @throws NoSuchElementException if client not found
      */
-    public Car addCar(final CarType carType,
-            final BigDecimal milesPerYear,
-            final RegionType regionType,
-            final BigDecimal versicherungspraemie,
-            final String registeredPostalCode,
-            final Long clientId) {
-        CarEntity carEntityToBeSave = new CarEntity();
-        carEntityToBeSave.setCarType(carType);
-        carEntityToBeSave.setMilesPerYear(milesPerYear);
-        carEntityToBeSave.setRegionType(regionType);
-        carEntityToBeSave.setRegisteredPostalCode(registeredPostalCode);
-
-        if (versicherungspraemie != null) {
-            carEntityToBeSave.setVersicherungspraemie(versicherungspraemie);
-        }
+    public Car addCar(final Car car, final Long clientId) {
+        CarEntity carEntityToBeSave = car.modelToEntity();
 
         Optional<ClientEntity> clientEntityOptional = clientRepository.findById(clientId);
         clientEntityOptional.ifPresentOrElse(
