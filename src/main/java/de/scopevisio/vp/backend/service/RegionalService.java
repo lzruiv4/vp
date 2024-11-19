@@ -4,6 +4,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import de.scopevisio.vp.backend.data.model.RegionalFromCSV;
 
+import de.scopevisio.vp.backend.data.store.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.io.FileReader;
@@ -27,7 +28,7 @@ public class RegionalService {
      *
      * @param path, where the csv file is.
      * @return RegionalsFromCSV as list
-     * @throws IllegalArgumentException if no csv file will be read.
+     * @throws NotFoundException if no csv file will be read.
      */
     public List<RegionalFromCSV> readRegionalFromCsv(String path) {
         List<RegionalFromCSV> regionalFromCSVS = new ArrayList<>();
@@ -40,7 +41,7 @@ public class RegionalService {
                 regionalFromCSVS.add(new RegionalFromCSV(row[7], row[6]));
             }
         } catch (IOException | CsvException e) {
-            throw new IllegalArgumentException("Read csv wrong");
+            throw new NotFoundException("Read csv wrong");
         }
         return regionalFromCSVS;
     }

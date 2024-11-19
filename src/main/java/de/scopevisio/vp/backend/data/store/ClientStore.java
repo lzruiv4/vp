@@ -4,6 +4,7 @@ import de.scopevisio.vp.backend.data.entity.ClientEntity;
 import de.scopevisio.vp.backend.data.model.Client;
 import de.scopevisio.vp.backend.data.repository.ClientRepository;
 
+import de.scopevisio.vp.backend.data.store.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,13 +34,13 @@ public class ClientStore {
      *
      * @param clientId is the id of client.
      * @return client
-     * @throws NoSuchElementException if client not found.
+     * @throws NotFoundException if client not found.
      */
     public Client getClient(final Long clientId) {
         Optional<ClientEntity> clientEntityOptional = clientRepository.findById(clientId);
         return clientEntityOptional
                 .map(ClientEntity::entityToModel)
-                .orElseThrow(() -> new NoSuchElementException("Client not found"));
+                .orElseThrow(() -> new NotFoundException("Client not found"));
     }
 
     /**
@@ -56,7 +57,7 @@ public class ClientStore {
      *
      * @param newClient is the client with new information.
      * @return client
-     * @throws NoSuchElementException if client not found.
+     * @throws NotFoundException if client not found.
      */
     public Client updateClient(final Client newClient) {
         Optional<ClientEntity> clientEntityOptional = clientRepository.findById(newClient.getClientId());
@@ -65,7 +66,7 @@ public class ClientStore {
                     mapTheNewClient(clientEntityOptional.get(), newClient.modelToEntity()))
                     .entityToModel();
         } else {
-            throw new NoSuchElementException("Client not found");
+            throw new NotFoundException("Client not found");
         }
     }
 

@@ -1,5 +1,6 @@
 package de.scopevisio.vp.backend.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,11 +21,14 @@ import lombok.RequiredArgsConstructor;
  */
 @RestController
 @RequestMapping("/cars")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class CarController {
 
-    private final CarService carService;
-    private final VersicherungspraemieBerechnenService versicherungspraemieBerechnenService;
+    @Autowired
+    private CarService carService;
+
+    @Autowired
+    private VersicherungspraemieBerechnenService versicherungspraemieBerechnenService;
 
     /**
      * Create a new car.

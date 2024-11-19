@@ -6,6 +6,7 @@ import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.data.repository.CarRepository;
 import de.scopevisio.vp.backend.data.repository.ClientRepository;
 
+import de.scopevisio.vp.backend.data.store.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +27,7 @@ public class CarStore {
      * @param car
      * @param clientId             is the client's id.
      * @return car
-     * @throws NoSuchElementException if client not found
+     * @throws NotFoundException if client not found
      */
     public Car addCar(final Car car, final Long clientId) {
         CarEntity carEntityToBeSave = car.modelToEntity();
@@ -35,7 +36,7 @@ public class CarStore {
         clientEntityOptional.ifPresentOrElse(
                 carEntityToBeSave::setClientEntity,
                 () -> {
-                    throw new NoSuchElementException("Client not found");
+                    throw new NotFoundException("Client not found");
                 });
 
         return carRepository.save(carEntityToBeSave).entityToModel();
@@ -59,12 +60,12 @@ public class CarStore {
      *
      * @param newCar is a car with all new information.
      * @return car, which up to date
-     * @throws NoSuchElementException if car not found
+     * @throws NotFoundException if car not found
      */
     public Car updateCar(final Car newCar) {
         Optional<CarEntity> carEntityOptional = carRepository.findById(newCar.getCarId());
         if (carEntityOptional.isEmpty())
-            throw new NoSuchElementException("Car not found");
+            throw new NotFoundException("Car not found");
         CarEntity carEntity = mapTheNewCar(carEntityOptional.get(), newCar.modelToEntity());
         return carRepository.saveAndFlush(carEntity).entityToModel();
     }
