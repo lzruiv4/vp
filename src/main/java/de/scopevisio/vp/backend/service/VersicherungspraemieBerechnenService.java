@@ -2,8 +2,8 @@ package de.scopevisio.vp.backend.service;
 
 import de.scopevisio.vp.backend.data.enums.CarType;
 import de.scopevisio.vp.backend.data.model.Car;
-import de.scopevisio.vp.backend.data.model.KilometerleistungFaktorFactory;
-import de.scopevisio.vp.backend.data.model.regionstrategy.*;
+import de.scopevisio.vp.backend.data.model.factories.KilometerleistungFaktorFactory;
+import de.scopevisio.vp.backend.data.model.factories.RegionsFactory;
 import de.scopevisio.vp.backend.data.store.CarStore;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,20 +43,6 @@ public class VersicherungspraemieBerechnenService {
      * @return KilometerleistungFaktor
      */
     public BigDecimal berechneKilometerleistungFaktor(final BigDecimal milesPerYear) {
-        // if (milesPerYear.compareTo(BigDecimal.valueOf(0)) >= 0 &&
-        //         milesPerYear.compareTo(BigDecimal.valueOf(5000)) <= 0) {
-        //     return KilometerleistungFaktorType.HALF.getKilometerleistungFaktor();
-        // } else if (milesPerYear.compareTo(BigDecimal.valueOf(5001)) >= 0
-        //         && milesPerYear.compareTo(BigDecimal.valueOf(10000)) <= 0) {
-        //     return KilometerleistungFaktorType.ONE.getKilometerleistungFaktor();
-        // } else if (milesPerYear.compareTo(BigDecimal.valueOf(10001)) >= 0
-        //         && milesPerYear.compareTo(BigDecimal.valueOf(20000)) <= 0) {
-        //     return KilometerleistungFaktorType.ONEANDAHALF.getKilometerleistungFaktor();
-        // } else if (milesPerYear.compareTo(BigDecimal.valueOf(20000)) > 0) {
-        //     return KilometerleistungFaktorType.TWO.getKilometerleistungFaktor();
-        // } else {
-        //     throw new IllegalArgumentException("Something is going wrong, please check your input");
-        // }
         return new KilometerleistungFaktorFactory().setFaktor(milesPerYear).getKilometerleistungFaktor();
     }
 
@@ -72,32 +58,10 @@ public class VersicherungspraemieBerechnenService {
 
     /**
      * Calculate RegionType, based on postal code.
-     * If postal code is between 00000 and 19999, it will return ARegion.
-     * If postal code is between 20000 and 39999, it will return BRegion.
-     * If postal code is between 40000 and 59999, it will return CRegion.
-     * If postal code is between 60000 and 79999, it will return DRegion.
-     * If postal code is between 80000 and 99999, it will return ERegion.
-     *
      * @param car, which to be calculated
      */
     public void berechneRegionType(final Car car) {
-        RegionStrategy regionStrategy;
-        if (car.getRegisteredPostalCode().compareTo("00000") >= 0 
-        && car.getRegisteredPostalCode().compareTo("19999") <= 0) {
-            regionStrategy = new ARegion();
-        } else if (car.getRegisteredPostalCode().compareTo("20000") >= 0 
-                && car.getRegisteredPostalCode().compareTo("39999") <= 0) {
-            regionStrategy = new BRegion();
-        } else if (car.getRegisteredPostalCode().compareTo("40000") >= 0 
-                && car.getRegisteredPostalCode().compareTo("59999") <= 0) {
-            regionStrategy = new CRegion();
-        } else if (car.getRegisteredPostalCode().compareTo("60000") >= 0 
-                && car.getRegisteredPostalCode().compareTo("79999") <= 0) {
-            regionStrategy = new DRegion();
-        } else {
-            regionStrategy = new ERegion();
-        }
-        car.setRegionType(regionStrategy.getRegionType());
+        car.setRegionType(new RegionsFactory().setRegion(car.getRegisteredPostalCode()));
         carStore.updateCar(car);
     }
 
