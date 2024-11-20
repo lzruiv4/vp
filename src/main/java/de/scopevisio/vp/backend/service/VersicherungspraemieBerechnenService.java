@@ -1,8 +1,8 @@
 package de.scopevisio.vp.backend.service;
 
 import de.scopevisio.vp.backend.data.enums.CarType;
-import de.scopevisio.vp.backend.data.enums.KilometerleistungFaktorType;
 import de.scopevisio.vp.backend.data.model.Car;
+import de.scopevisio.vp.backend.data.model.KilometerleistungFaktorFactory;
 import de.scopevisio.vp.backend.data.model.regionstrategy.*;
 import de.scopevisio.vp.backend.data.store.CarStore;
 
@@ -41,23 +41,23 @@ public class VersicherungspraemieBerechnenService {
      *
      * @param milesPerYear is the average mileage per year.
      * @return KilometerleistungFaktor
-     * @throws IllegalArgumentException if something wrong, maybe postal code is wrong.
      */
     public BigDecimal berechneKilometerleistungFaktor(final BigDecimal milesPerYear) {
-        if (milesPerYear.compareTo(BigDecimal.valueOf(0)) >= 0 &&
-                milesPerYear.compareTo(BigDecimal.valueOf(5000)) <= 0) {
-            return KilometerleistungFaktorType.HALF.getKilometerleistungFaktor();
-        } else if (milesPerYear.compareTo(BigDecimal.valueOf(5001)) >= 0
-                && milesPerYear.compareTo(BigDecimal.valueOf(10000)) <= 0) {
-            return KilometerleistungFaktorType.ONE.getKilometerleistungFaktor();
-        } else if (milesPerYear.compareTo(BigDecimal.valueOf(10001)) >= 0
-                && milesPerYear.compareTo(BigDecimal.valueOf(20000)) <= 0) {
-            return KilometerleistungFaktorType.ONEANDAHALF.getKilometerleistungFaktor();
-        } else if (milesPerYear.compareTo(BigDecimal.valueOf(20000)) > 0) {
-            return KilometerleistungFaktorType.TWO.getKilometerleistungFaktor();
-        } else {
-            throw new IllegalArgumentException("Something is going wrong, please check your input");
-        }
+        // if (milesPerYear.compareTo(BigDecimal.valueOf(0)) >= 0 &&
+        //         milesPerYear.compareTo(BigDecimal.valueOf(5000)) <= 0) {
+        //     return KilometerleistungFaktorType.HALF.getKilometerleistungFaktor();
+        // } else if (milesPerYear.compareTo(BigDecimal.valueOf(5001)) >= 0
+        //         && milesPerYear.compareTo(BigDecimal.valueOf(10000)) <= 0) {
+        //     return KilometerleistungFaktorType.ONE.getKilometerleistungFaktor();
+        // } else if (milesPerYear.compareTo(BigDecimal.valueOf(10001)) >= 0
+        //         && milesPerYear.compareTo(BigDecimal.valueOf(20000)) <= 0) {
+        //     return KilometerleistungFaktorType.ONEANDAHALF.getKilometerleistungFaktor();
+        // } else if (milesPerYear.compareTo(BigDecimal.valueOf(20000)) > 0) {
+        //     return KilometerleistungFaktorType.TWO.getKilometerleistungFaktor();
+        // } else {
+        //     throw new IllegalArgumentException("Something is going wrong, please check your input");
+        // }
+        return new KilometerleistungFaktorFactory().setFaktor(milesPerYear).getKilometerleistungFaktor();
     }
 
     /**
