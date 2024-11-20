@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.scopevisio.vp.backend.data.enums.KilometerleistungFaktorType;
+import de.scopevisio.vp.backend.data.store.exception.NotFoundException;
 import lombok.AllArgsConstructor;
 
 public class KilometerleistungFaktorFactory {
@@ -27,7 +28,14 @@ public class KilometerleistungFaktorFactory {
     }
 
     public KilometerleistungFaktorType setFaktor(final BigDecimal milesPerYear) {
-        return kilometerleistungFaktorFactory.get(kilometerleistungFaktorFactory.keySet().stream().filter(range -> range.isInRange(milesPerYear)).findFirst().get());
+        return kilometerleistungFaktorFactory.get(
+                kilometerleistungFaktorFactory.keySet().stream()
+                        .filter(range -> range.isInRange(milesPerYear))
+                        .findFirst()
+                        .orElseThrow(
+                                () -> new NotFoundException("Something went wrong")
+                        )
+        );
     }
 
     @AllArgsConstructor
@@ -37,7 +45,9 @@ public class KilometerleistungFaktorFactory {
         private final BigDecimal upper;
 
         boolean isInRange(BigDecimal milesPerYear) {
-            return upper == null && milesPerYear.compareTo(lower) > 0 ? true : milesPerYear.compareTo(lower) >= 0 && milesPerYear.compareTo(upper) <= 0;
+            return upper == null && milesPerYear.compareTo(lower) > 0
+                    ? true
+                    : milesPerYear.compareTo(lower) >= 0 && milesPerYear.compareTo(upper) <= 0;
         }
 
     }

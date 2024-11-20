@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import de.scopevisio.vp.backend.data.model.Car;
 import de.scopevisio.vp.backend.service.CarService;
 import de.scopevisio.vp.backend.service.VersicherungspraemieBerechnenService;
-import lombok.RequiredArgsConstructor;
 
 /**
  * This controller handles all operations related to managing Car.
@@ -21,7 +20,6 @@ import lombok.RequiredArgsConstructor;
  */
 @RestController
 @RequestMapping("/cars")
-//@RequiredArgsConstructor
 public class CarController {
 
     @Autowired

@@ -63,11 +63,9 @@ public class CarStore {
      * @throws NotFoundException if car not found
      */
     public Car updateCar(final Car newCar) {
-        Optional<CarEntity> carEntityOptional = carRepository.findById(newCar.getCarId());
-        if (carEntityOptional.isEmpty())
-            throw new NotFoundException("Car not found");
-        CarEntity carEntity = mapTheNewCar(carEntityOptional.get(), newCar.modelToEntity());
-        return carRepository.saveAndFlush(carEntity).entityToModel();
+        CarEntity carEntity = carRepository.findById(newCar.getCarId())
+                .orElseThrow(() -> new NotFoundException("Car not found"));
+        return carRepository.saveAndFlush(mapTheNewCar(carEntity, newCar.modelToEntity())).entityToModel();
     }
 
     /**
@@ -77,22 +75,22 @@ public class CarStore {
      * @param newCarEntity is a new carEntity.
      * @return carEntity
      */
-    private CarEntity mapTheNewCar(CarEntity oldCarEntity, CarEntity newCarEntity) {
-        if (oldCarEntity.getCarType() != newCarEntity.getCarType() && newCarEntity.getCarType() != null)
-            oldCarEntity.setCarType(newCarEntity.getCarType());
-        if (!Objects.equals(oldCarEntity.getMilesPerYear(), newCarEntity.getMilesPerYear())
-                && newCarEntity.getMilesPerYear() != null)
-            oldCarEntity.setMilesPerYear(newCarEntity.getMilesPerYear());
-        if (oldCarEntity.getRegionType() != newCarEntity.getRegionType() && newCarEntity.getRegionType() != null)
-            oldCarEntity.setRegionType(newCarEntity.getRegionType());
-        if (!Objects.equals(oldCarEntity.getVersicherungspraemie(), newCarEntity.getVersicherungspraemie())
-                && newCarEntity.getVersicherungspraemie() != null)
-            oldCarEntity.setVersicherungspraemie(newCarEntity.getVersicherungspraemie());
-        if (!Objects.equals(oldCarEntity.getRegisteredPostalCode(), newCarEntity.getRegisteredPostalCode())
-                && newCarEntity.getRegisteredPostalCode() != null)
-            oldCarEntity.setRegisteredPostalCode(newCarEntity.getRegisteredPostalCode());
+     private CarEntity mapTheNewCar(CarEntity oldCarEntity, CarEntity newCarEntity) {
+         if (oldCarEntity.getCarType() != newCarEntity.getCarType() && newCarEntity.getCarType() != null)
+             oldCarEntity.setCarType(newCarEntity.getCarType());
+         if (!Objects.equals(oldCarEntity.getMilesPerYear(), newCarEntity.getMilesPerYear())
+                 && newCarEntity.getMilesPerYear() != null)
+             oldCarEntity.setMilesPerYear(newCarEntity.getMilesPerYear());
+         if (oldCarEntity.getRegionType() != newCarEntity.getRegionType() && newCarEntity.getRegionType() != null)
+             oldCarEntity.setRegionType(newCarEntity.getRegionType());
+         if (!Objects.equals(oldCarEntity.getVersicherungspraemie(), newCarEntity.getVersicherungspraemie())
+                 && newCarEntity.getVersicherungspraemie() != null)
+             oldCarEntity.setVersicherungspraemie(newCarEntity.getVersicherungspraemie());
+         if (!Objects.equals(oldCarEntity.getRegisteredPostalCode(), newCarEntity.getRegisteredPostalCode())
+                 && newCarEntity.getRegisteredPostalCode() != null)
+             oldCarEntity.setRegisteredPostalCode(newCarEntity.getRegisteredPostalCode());
 
-        return oldCarEntity;
-    }
+         return oldCarEntity;
+     }
 
 }

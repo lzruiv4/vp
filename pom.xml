@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.scopevisio</groupId>
     <artifactId>vp</artifactId>
@@ -82,6 +82,13 @@
             <groupId>org.linkki-framework</groupId>
             <artifactId>linkki-application-framework-vaadin-flow</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.5.5.Final</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -100,7 +107,7 @@
                         </exclude>
                     </excludes>
                 </configuration>
-            </plugin> 
+            </plugin>
             <plugin>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
@@ -116,8 +123,8 @@
             </plugin>
         </plugins>
     </build>
-    
-     <profiles>
+
+    <profiles>
         <profile>
             <!-- Production mode is activated using -Pproduction -->
             <id>production</id>
