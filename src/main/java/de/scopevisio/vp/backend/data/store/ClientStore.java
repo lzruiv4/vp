@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Component
 public class ClientStore {
@@ -36,8 +35,7 @@ public class ClientStore {
      * @throws NotFoundException if client not found.
      */
     public Client getClient(final Long clientId) {
-        Optional<ClientEntity> clientEntityOptional = clientRepository.findById(clientId);
-        return clientEntityOptional
+        return clientRepository.findById(clientId)
                 .map(ClientEntity::entityToModel)
                 .orElseThrow(() -> new NotFoundException("Client not found"));
     }
@@ -59,14 +57,9 @@ public class ClientStore {
      * @throws NotFoundException if client not found.
      */
     public Client updateClient(final Client newClient) {
-        Optional<ClientEntity> clientEntityOptional = clientRepository.findById(newClient.getClientId());
-        if (clientEntityOptional.isPresent()) {
-            return clientRepository.saveAndFlush(
-                    mapTheNewClient(clientEntityOptional.get(), newClient.modelToEntity()))
-                    .entityToModel();
-        } else {
-            throw new NotFoundException("Client not found");
-        }
+        ClientEntity clientEntity = clientRepository.findById(newClient.getClientId())
+                .orElseThrow(() -> new NotFoundException("Client not found"));
+        return clientRepository.saveAndFlush(mapTheNewClient(clientEntity, newClient.modelToEntity())).entityToModel();
     }
 
     /**
