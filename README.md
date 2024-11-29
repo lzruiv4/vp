@@ -10,8 +10,3 @@
   - VersicherungspraemieBerechnenService
 - Der Backend-Test basiert auf `TestRestTemplate`. Der Frontend-Test habe ich hier nicht gemacht. Deswegen sieht man hier weniger Testabdeckungen. Aber wie gesehen, das Backend ist schon fast alles abgedeckt. ;)
 - Anbei sieht man auch ein `vp_postman.postman_collection.json`, damit man durch postman die Request testen kann.
-- Auch ein UI (`linkki`) ist dabei. Nach dem Start der App sollte diese automatisch zum Browser springen. Wenn nicht, bitte kopiert die Adresse `http://localhost:8080/clients` in deinen Browser.
-  - Eine neue Kunde kann durch `+ New Client` hinzugefügt. Hier sollen `Firstname`, `Lastname`, `street`, `House Number`, `PostCode`in einem Dialog eingegeben werden. 
-    - Tipp: Bitte aktualisiert die Seite, nachdem einer Kunde hinzugefügt ist. Dies scheint ein Bug von Linkki zu sein.
-  - Nachdem Aktualisierung bekommt man schon einen Kunden. Ganz rechts befindet sich ein `Cars` und ein `Stifticon`. Wenn man auf das Stiftsymbol klicken, kann die Kundeninformation geändert werden.
-  - Wenn man auf `cars` klicken, wird die Seite zum Cardetail weitergeleitet. Falls noch kein Car gibt, kann auch durch `+` Button ein Auto hinzufügen. Gleichfalls gibt es auch ein Stifticon, damit die Autoinformationen geändert wird.
