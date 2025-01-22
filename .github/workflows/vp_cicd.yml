@@ -19,14 +19,22 @@ jobs:
           distribution: "zulu"
           java-version: "17"
 
-      - name: Setup maven
-        uses: stCarolas/setup-maven@v5
+      # - name: Setup maven
+      #   uses: stCarolas/setup-maven@v5
 
-      - name: Clean project
-        run: mvn clean install
+      # - name: Clean project
+      #   run: mvn clean install
+
+      - name: setup gradle
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gradle
+      
+      - name: build project
+        run: gradle clean install
 
       - name: Break
         run: sleep 10
 
       - name: Run test
-        run: mvn test
+        run: gradle test
