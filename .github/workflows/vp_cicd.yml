@@ -31,7 +31,7 @@ jobs:
           sudo apt-get install -y gradle
       
       - name: build project
-        run: gradle clean install
+        run: gradle clean build
 
       - name: Break
         run: sleep 10
