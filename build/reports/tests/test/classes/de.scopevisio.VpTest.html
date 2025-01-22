@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.494s</div>
+<div class="counter">1.247s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,32 +79,32 @@
 </thead>
 <tr>
 <td class="success">addACarTest()</td>
-<td class="success">1.120s</td>
+<td class="success">0.975s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">createClientWithoutNameTest()</td>
-<td class="success">0.038s</td>
+<td class="success">0.023s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">getClientByInvalidId()</td>
-<td class="success">0.038s</td>
+<td class="success">0.026s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">updateACarTest()</td>
-<td class="success">0.155s</td>
+<td class="success">0.109s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">updateClientTest()</td>
-<td class="success">0.080s</td>
+<td class="success">0.059s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">updateClientWithInvalidIdTest()</td>
-<td class="success">0.063s</td>
+<td class="success">0.055s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -112,9 +112,9 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>15:19:55.809 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [de.scopevisio.VpTest]: VpTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-15:19:55.951 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration de.scopevisio.VPApp for test class de.scopevisio.VpTest
-15:19:56.509 [Test worker] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
+<pre>15:30:01.019 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [de.scopevisio.VpTest]: VpTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:30:01.134 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration de.scopevisio.VPApp for test class de.scopevisio.VpTest
+15:30:01.656 [Test worker] INFO org.springframework.boot.devtools.restart.RestartApplicationListener -- Restart disabled due to context in which it is running
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -125,24 +125,24 @@
 
  :: Spring Boot ::                (v3.4.0)
 
-2025-01-22T15:19:56.835+01:00  INFO 41149 --- [    Test worker] de.scopevisio.VpTest                     : Starting VpTest using Java 17.0.6 with PID 41149 (started by zraylam in /Users/zraylam/Desktop/Zray_Local/Code/Java/Intellij/vp)
-2025-01-22T15:19:56.838+01:00  INFO 41149 --- [    Test worker] de.scopevisio.VpTest                     : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2025-01-22T15:19:57.501+01:00  INFO 41149 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-01-22T15:19:57.567+01:00  INFO 41149 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 2 JPA repository interfaces.
-2025-01-22T15:19:58.154+01:00  INFO 41149 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
-2025-01-22T15:19:58.166+01:00  INFO 41149 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-01-22T15:19:58.167+01:00  INFO 41149 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
-2025-01-22T15:19:58.229+01:00  INFO 41149 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-01-22T15:19:58.229+01:00  INFO 41149 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1369 ms
-2025-01-22T15:19:58.267+01:00  INFO 41149 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-01-22T15:19:58.459+01:00  INFO 41149 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:db user=TEST
-2025-01-22T15:19:58.462+01:00  INFO 41149 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-01-22T15:19:58.479+01:00  INFO 41149 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/testDB'. Database available at 'jdbc:h2:mem:db'
-2025-01-22T15:19:58.628+01:00  INFO 41149 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-01-22T15:19:58.691+01:00  INFO 41149 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
-2025-01-22T15:19:58.729+01:00  INFO 41149 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-01-22T15:19:59.011+01:00  INFO 41149 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-01-22T15:19:59.095+01:00  INFO 41149 --- [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-01-22T15:30:01.968+01:00  INFO 42174 --- [    Test worker] de.scopevisio.VpTest                     : Starting VpTest using Java 17.0.6 with PID 42174 (started by zraylam in /Users/zraylam/Desktop/Zray_Local/Code/Java/Intellij/vp)
+2025-01-22T15:30:01.970+01:00  INFO 42174 --- [    Test worker] de.scopevisio.VpTest                     : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-01-22T15:30:02.467+01:00  INFO 42174 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-01-22T15:30:02.524+01:00  INFO 42174 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 2 JPA repository interfaces.
+2025-01-22T15:30:03.018+01:00  INFO 42174 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2025-01-22T15:30:03.030+01:00  INFO 42174 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-22T15:30:03.030+01:00  INFO 42174 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2025-01-22T15:30:03.085+01:00  INFO 42174 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-22T15:30:03.085+01:00  INFO 42174 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1099 ms
+2025-01-22T15:30:03.117+01:00  INFO 42174 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-01-22T15:30:03.279+01:00  INFO 42174 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:db user=TEST
+2025-01-22T15:30:03.281+01:00  INFO 42174 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-01-22T15:30:03.291+01:00  INFO 42174 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/testDB'. Database available at 'jdbc:h2:mem:db'
+2025-01-22T15:30:03.423+01:00  INFO 42174 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-01-22T15:30:03.474+01:00  INFO 42174 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2025-01-22T15:30:03.504+01:00  INFO 42174 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-01-22T15:30:03.748+01:00  INFO 42174 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-01-22T15:30:03.825+01:00  INFO 42174 --- [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 2.3.232
@@ -150,19 +150,19 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-01-22T15:19:59.963+01:00  INFO 41149 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-01-22T15:30:04.609+01:00  INFO 42174 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: drop table if exists cars cascade 
 Hibernate: drop table if exists clients cascade 
 Hibernate: create table cars (car_type tinyint check (car_type between 0 and 1), miles_per_year numeric(38,2), region_type tinyint check (region_type between 0 and 4), versicherungspraemie numeric(38,2), client_id bigint, car_id uuid not null, registered_postal_code varchar(255), primary key (car_id))
 Hibernate: create table clients (client_id bigint generated by default as identity, city varchar(255), firstname varchar(255), house_number varchar(255), lastname varchar(255), post_code varchar(255), street varchar(255), primary key (client_id))
 Hibernate: alter table if exists cars add constraint FKck78ir6o9hir2b8ya5kd8nho0 foreign key (client_id) references clients
-2025-01-22T15:20:00.013+01:00  INFO 41149 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-01-22T15:20:00.642+01:00  WARN 41149 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-01-22T15:20:01.149+01:00  INFO 41149 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 61803 (http) with context path '/'
-2025-01-22T15:20:01.161+01:00  INFO 41149 --- [    Test worker] de.scopevisio.VpTest                     : Started VpTest in 4.665 seconds (process running for 6.257)
-2025-01-22T15:20:01.890+01:00  INFO 41149 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-01-22T15:20:01.891+01:00  INFO 41149 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-01-22T15:20:01.893+01:00  INFO 41149 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-01-22T15:30:04.658+01:00  INFO 42174 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-01-22T15:30:05.203+01:00  WARN 42174 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-01-22T15:30:05.567+01:00  INFO 42174 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 62047 (http) with context path '/'
+2025-01-22T15:30:05.577+01:00  INFO 42174 --- [    Test worker] de.scopevisio.VpTest                     : Started VpTest in 3.932 seconds (process running for 5.438)
+2025-01-22T15:30:06.178+01:00  INFO 42174 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-22T15:30:06.178+01:00  INFO 42174 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-22T15:30:06.179+01:00  INFO 42174 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 Hibernate: insert into clients (city,firstname,house_number,lastname,post_code,street,client_id) values (?,?,?,?,?,?,default)
 Hibernate: select ce1_0.client_id,ce1_0.city,ce1_0.firstname,ce1_0.house_number,ce1_0.lastname,ce1_0.post_code,ce1_0.street from clients ce1_0 where ce1_0.client_id=?
 Hibernate: insert into cars (car_type,client_id,miles_per_year,region_type,registered_postal_code,versicherungspraemie,car_id) values (?,?,?,?,?,?,?)
@@ -180,7 +180,7 @@ Hibernate: select ce1_0.client_id,ce1_0.city,ce1_0.firstname,ce1_0.house_number,
 Hibernate: select ce1_0.car_id,ce1_0.car_type,ce1_0.client_id,ce1_0.miles_per_year,ce1_0.region_type,ce1_0.registered_postal_code,ce1_0.versicherungspraemie from cars ce1_0
 Hibernate: insert into clients (city,firstname,house_number,lastname,post_code,street,client_id) values (?,?,?,?,?,?,default)
 Hibernate: select ce1_0.client_id,ce1_0.city,ce1_0.firstname,ce1_0.house_number,ce1_0.lastname,ce1_0.post_code,ce1_0.street from clients ce1_0 where ce1_0.client_id=?
-2025-01-22T15:20:02.413+01:00 ERROR 41149 --- [o-auto-1-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: de.scopevisio.data.store.exception.NotFoundException: Client not found] with root cause
+2025-01-22T15:30:06.657+01:00 ERROR 42174 --- [o-auto-1-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: de.scopevisio.data.store.exception.NotFoundException: Client not found] with root cause
 
 de.scopevisio.data.store.exception.NotFoundException: Client not found
 	at de.scopevisio.data.store.ClientStore.lambda$updateClient$1(ClientStore.java:60) ~[main/:na]
@@ -264,7 +264,7 @@ Hibernate: update cars set car_type=?,client_id=?,miles_per_year=?,region_type=?
 Hibernate: select ce1_0.client_id,ce1_0.city,ce1_0.firstname,ce1_0.house_number,ce1_0.lastname,ce1_0.post_code,ce1_0.street from clients ce1_0 where ce1_0.client_id=?
 Hibernate: select ce1_0.car_id,ce1_0.car_type,ce1_0.client_id,ce1_0.miles_per_year,ce1_0.region_type,ce1_0.registered_postal_code,ce1_0.versicherungspraemie from cars ce1_0
 Hibernate: select ce1_0.client_id,ce1_0.city,ce1_0.firstname,ce1_0.house_number,ce1_0.lastname,ce1_0.post_code,ce1_0.street from clients ce1_0 where ce1_0.client_id=?
-2025-01-22T15:20:02.595+01:00 ERROR 41149 --- [o-auto-1-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: de.scopevisio.data.store.exception.NotFoundException: Something went wrong] with root cause
+2025-01-22T15:30:06.786+01:00 ERROR 42174 --- [o-auto-1-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: de.scopevisio.data.store.exception.NotFoundException: Something went wrong] with root cause
 
 de.scopevisio.data.store.exception.NotFoundException: Something went wrong
 	at de.scopevisio.data.model.factories.KilometerleistungFaktorFactory.lambda$setFaktor$1(KilometerleistungFaktorFactory.java:35) ~[main/:na]
@@ -327,7 +327,7 @@ de.scopevisio.data.store.exception.NotFoundException: Something went wrong
 Hibernate: insert into clients (city,firstname,house_number,lastname,post_code,street,client_id) values (?,?,?,?,?,?,default)
 Hibernate: insert into clients (city,firstname,house_number,lastname,post_code,street,client_id) values (?,?,?,?,?,?,default)
 Hibernate: select ce1_0.client_id,ce1_0.city,ce1_0.firstname,ce1_0.house_number,ce1_0.lastname,ce1_0.post_code,ce1_0.street from clients ce1_0 where ce1_0.client_id=?
-2025-01-22T15:20:02.679+01:00 ERROR 41149 --- [o-auto-1-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: de.scopevisio.data.store.exception.NotFoundException: Client not found] with root cause
+2025-01-22T15:30:06.843+01:00 ERROR 42174 --- [o-auto-1-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: de.scopevisio.data.store.exception.NotFoundException: Client not found] with root cause
 
 de.scopevisio.data.store.exception.NotFoundException: Client not found
 	at de.scopevisio.data.store.ClientStore.lambda$getClient$0(ClientStore.java:39) ~[main/:na]
@@ -397,7 +397,7 @@ de.scopevisio.data.store.exception.NotFoundException: Client not found
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.11.1</a> at 22 Jan 2025, 15:20:03</p>
+<a href="http://www.gradle.org">Gradle 8.11.1</a> at 22 Jan 2025, 15:30:07</p>
 </div>
 </div>
 </body>

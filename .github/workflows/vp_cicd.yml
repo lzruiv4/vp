@@ -25,13 +25,13 @@ jobs:
       # - name: Clean project
       #   run: mvn clean install
 
-      - name: setup gradle
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gradle
+      # - name: setup gradle
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y gradle
       
-      - name: build project
-        run: gradle clean build
+      # - name: build project
+      #   run: gradle clean build
 
       - name: Break
         run: sleep 10
